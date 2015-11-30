@@ -95,24 +95,18 @@ def str2int(strs):
 ##============Start Server Threading============
 class RunCGIServer(threading.Thread):
 	def run(self):
+		CGI = Bottle()
+		RouteTable(CGI)
 		CGI.run(host=webhost,port=webport,server='cherrypy')
 
 ##============Init============
-def mainfunc():
-	CGI = Bottle()
-	RouteTable(CGI)
-	#fsqlp=open("/var/prv/mysql.json","r")
-	#jsf=json.loads(fsqlp.read())
-	#mysql=MySQLdb.connect(host=jsf['host'], user=jsf['user'],passwd=jsf['passwd'],db="")
-	serv = RunCGIServer()
-	serv.start()
-
 def dmInit():
 	reload(sys)
 	sys.setdefaultencoding('utf-8')
 	try:
 		os.chdir(basedir)
-		mainfunc()
+		serv = RunCGIServer()
+		serv.start()
 	except Exception,e:
 		time.sleep(5)
 		s = traceback.format_exc()

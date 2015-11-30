@@ -35,7 +35,7 @@ redeploy(){
   git pull
   git checkout master
   git submodule foreach git pull origin master
-  ./start
+  python ${basedir}zlogsysd.py start
 }
 case "$1" in
 start)

@@ -93,18 +93,18 @@ def str2int(strs):
 
 ##============Start Server Threading============
 class RunCGIServer(threading.Thread):
-    def run(self):
-        CGI.run(host=webhost,port=webport,server='cherrypy')
+	def run(self):
+		CGI.run(host=webhost,port=webport,server='cherrypy')
 
 ##============Init============
 def mainfunc():
-    CGI=Bottle()
-    RouteTable(CGI)
-    #fsqlp=open("/var/prv/mysql.json","r")
-    #jsf=json.loads(fsqlp.read())
-    #mysql=MySQLdb.connect(host=jsf['host'], user=jsf['user'],passwd=jsf['passwd'],db="")
-    serv=RunCGIServer()
-    serv.start()
+	CGI=Bottle()
+	RouteTable(CGI)
+	#fsqlp=open("/var/prv/mysql.json","r")
+	#jsf=json.loads(fsqlp.read())
+	#mysql=MySQLdb.connect(host=jsf['host'], user=jsf['user'],passwd=jsf['passwd'],db="")
+	serv=RunCGIServer()
+	serv.start()
 
 ##============Daemon System============
 class MyDaemon(Daemon):
@@ -135,19 +135,19 @@ if __name__ == '__main__':
 		print "Environment Variable '$pidfile' Not Found. Did you use 'zlogsysd' daemon script to launch this?" % sys.argv[0]
 		sys.exit(2)
 	webhost = os.environ.get('webhost','0.0.0.0')
-    sysloghost = os.environ.get('sysloghost','0.0.0.0')
+	sysloghost = os.environ.get('sysloghost','0.0.0.0')
 	swport = os.environ.get('webport','9564')
 	webport = str2int(swport)
 	if webport == 0:
 		print "Loading Env...                                        [\033[1;31;40mFAILURE\033[0m]"
 		print "Invalid Value of '$webport'" % sys.argv[0]
 		sys.exit(2)
-    slport = os.environ.get('syslogport','9514')
-    syslogport = str2int(slport)
-    if syslogport == 0:
-        print "Loading Env...                                        [\033[1;31;40mFAILURE\033[0m]"
-        print "Invalid Value of '$syslogport'" % sys.argv[0]
-        sys.exit(2)
+	slport = os.environ.get('syslogport','9514')
+	syslogport = str2int(slport)
+	if syslogport == 0:
+		print "Loading Env...                                        [\033[1;31;40mFAILURE\033[0m]"
+		print "Invalid Value of '$syslogport'" % sys.argv[0]
+		sys.exit(2)
 	currname='zlogsysd'
 	daemon = MyDaemon(pidfile,'/dev/null',basedir+currname+'.out',basedir+currname+'.err')
 	if len(sys.argv) == 2:

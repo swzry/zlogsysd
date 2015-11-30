@@ -116,7 +116,7 @@ def dmInit():
 ##============Daemon System============
 class MyDaemon(Daemon):
 	def _run(self):
-		if ProcessMonitorOn:
+		if proccessMonitorOn:
 			while True:
 				dmInit()
 		else:

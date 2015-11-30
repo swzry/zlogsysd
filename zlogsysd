@@ -12,6 +12,7 @@ export webhost=0.0.0.0
 export webport=9564
 export sysloghost=0.0.0.0
 export syslogport=9514
+export proccessMonitorOn=False
 
 start(){
 	cd ${basedir}

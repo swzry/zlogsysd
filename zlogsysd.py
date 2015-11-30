@@ -12,6 +12,7 @@ maxdate=datetime.datetime.fromtimestamp(2140000000)
 basedir,pidfile,currname,shost = "","","",""
 webport,syslogport = 9564,9514
 CGI = None
+proccessMonitorOn = False
 ##============================
 def RouteTable(app):
 	cgiapp=CGI_APP()
@@ -98,28 +99,35 @@ class RunCGIServer(threading.Thread):
 
 ##============Init============
 def mainfunc():
-	CGI=Bottle()
+	CGI = Bottle()
 	RouteTable(CGI)
 	#fsqlp=open("/var/prv/mysql.json","r")
 	#jsf=json.loads(fsqlp.read())
 	#mysql=MySQLdb.connect(host=jsf['host'], user=jsf['user'],passwd=jsf['passwd'],db="")
-	serv=RunCGIServer()
+	serv = RunCGIServer()
 	serv.start()
+
+def dmInit():
+	reload(sys)
+	sys.setdefaultencoding('utf-8')
+	try:
+		os.chdir(basedir)
+		mainfunc()
+	except Exception,e:
+		time.sleep(5)
+		s = traceback.format_exc()
+		sys.stderr.write("\n"+now()+"Application was shutdown by a fatal error.\n%s\n"%s)
+		sys.stderr.flush()
 
 ##============Daemon System============
 class MyDaemon(Daemon):
 	def _run(self):
-		#while True:
-			reload(sys)
-			sys.setdefaultencoding('utf-8')
-			try:
-				os.chdir(basedir)
-				mainfunc()
-			except Exception,e:
-				time.sleep(1)
-				s=traceback.format_exc()
-				sys.stderr.write("\n"+now()+"Application was shutdown by a fatal error.\n%s\n"%s)
-				sys.stderr.flush()
+		if ProcessMonitorOn:
+			while True:
+				dmInit()
+		else:
+			dmInit()
+			
 
 if __name__ == '__main__':
 	reload(sys)
@@ -134,6 +142,8 @@ if __name__ == '__main__':
 		print "Loading Env...                                        [\033[1;31;40mFAILURE\033[0m]"
 		print "Environment Variable '$pidfile' Not Found. Did you use 'zlogsysd' daemon script to launch this?"
 		sys.exit(2)
+	prcL = os.environ.get('proccessMonitorOn','0.0.0.0')
+	proccessMonitorOn = (prcL == "True")
 	webhost = os.environ.get('webhost','0.0.0.0')
 	sysloghost = os.environ.get('sysloghost','0.0.0.0')
 	swport = os.environ.get('webport','9564')

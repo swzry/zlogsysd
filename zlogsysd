@@ -5,14 +5,37 @@
 # processname: zlogsysd
 # pidfile: /dev/shm/zlogsysd.pid
 ### END INIT INFO
+
+basedir=/home/wwwcgi/zlogsysd/
+pidfile=/run/zlogsysd.pid
+webhost=0.0.0.0
+webport=9564
+sysloghost=0.0.0.0
+syslogport=9514
+
 start(){
-    python2.7 /home/wwwcgi/zlogsysd/zlogsysd.py start
+	cd ${basedir}
+    python ${basedir}zlogsysd.py start
 }
 stop(){
-    python2.7 /home/wwwcgi/zlogsysd/zlogsysd.py stop
+	cd ${basedir}
+    python ${basedir}zlogsysd.py stop
 }
 restart(){
-    python2.7 /home/wwwcgi/zlogsysd/zlogsysd.py restart
+	cd ${basedir}
+    python ${basedir}zlogsysd.py stop
+    python ${basedir}zlogsysd.py start
+}
+redeploy(){
+  cd ${basedir}
+  python ${basedir}zlogsysd.py stop
+  echo -e "[\033[40;33mUsage:Pulling Code From Git............\033[0m]"
+  git reset --hard origin/master
+  git clean -f
+  git pull
+  git checkout master
+  git submodule foreach git pull origin master
+  ./start
 }
 case "$1" in
 start)
@@ -24,5 +47,11 @@ stop
 restart)
 restart
 ;;
+redeploy)
+redeploy
+;;
+*)
+echo -e "[\033[40;31mInvalid Command.\033[0m]"
+echo -e "[\033[40;33mUsage:\033[0m] zlogsysd start|stop|restart|redeploy"
 esac
 exit 0

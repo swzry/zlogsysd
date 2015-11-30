@@ -127,12 +127,12 @@ if __name__ == '__main__':
 	basedir = os.environ.get('basedir','[Err]')
 	if basedir == "[Err]":
 		print "Loading Env...                                        [\033[1;31;40mFAILURE\033[0m]"
-		print "Environment Variable '$basedir' Not Found. Did you use 'zlogsysd' daemon script to launch this?" % sys.argv[0]
+		print "Environment Variable '$basedir' Not Found. Did you use 'zlogsysd' daemon script to launch this?"
 		sys.exit(2)
 	pidfile = os.environ.get('pidfile','[Err]')
 	if pidfile == "[Err]":
 		print "Loading Env...                                        [\033[1;31;40mFAILURE\033[0m]"
-		print "Environment Variable '$pidfile' Not Found. Did you use 'zlogsysd' daemon script to launch this?" % sys.argv[0]
+		print "Environment Variable '$pidfile' Not Found. Did you use 'zlogsysd' daemon script to launch this?"
 		sys.exit(2)
 	webhost = os.environ.get('webhost','0.0.0.0')
 	sysloghost = os.environ.get('sysloghost','0.0.0.0')

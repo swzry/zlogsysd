@@ -6,12 +6,12 @@
 # pidfile: /dev/shm/zlogsysd.pid
 ### END INIT INFO
 
-basedir=/home/wwwcgi/zlogsysd/
-pidfile=/run/zlogsysd.pid
-webhost=0.0.0.0
-webport=9564
-sysloghost=0.0.0.0
-syslogport=9514
+export basedir=/home/wwwcgi/zlogsysd/
+export pidfile=/run/zlogsysd.pid
+export webhost=0.0.0.0
+export webport=9564
+export sysloghost=0.0.0.0
+export syslogport=9514
 
 start(){
 	cd ${basedir}

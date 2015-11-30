@@ -149,7 +149,7 @@ if __name__ == '__main__':
 		print "Invalid Value of '$syslogport'" % sys.argv[0]
 		sys.exit(2)
 	currname='zlogsysd'
-	daemon = MyDaemon(pidfile,'/dev/null',basedir+currname+'.out',basedir+currname+'.err')
+	daemon = MyDaemon(pidfile,'/dev/null',basedir+currname+'.out.log',basedir+currname+'.err.log')
 	if len(sys.argv) == 2:
 		if 'start' == sys.argv[1]:
 			print "Starting...                                            [\033[1;32;40mOK\033[0m]"

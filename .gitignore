@@ -58,3 +58,6 @@ docs/_build/
 # PyBuilder
 target/
 
+# Config Files
+config.json
+dbsettings.py

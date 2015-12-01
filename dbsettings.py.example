@@ -1,0 +1,11 @@
+import redis
+
+SQL_DB_CONNECT_STRING = 'mysql+mysqldb://user:passwd@localhost/dbname?charset=utf8'
+# 存储日志的关系型数据库配置
+# 连接字串格式见SQLAlchemy文档
+# http://docs.sqlalchemy.org/en/rel_1_0/
+
+REDIS_OBJ = redis.Redis(host='127.0.0.1',port=6379,db=2)
+# 初始化Redis连接对象
+# 详见python-redis文档
+# https://pypi.python.org/pypi/redis/

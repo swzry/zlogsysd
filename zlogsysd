@@ -29,6 +29,10 @@ restart(){
     python ${basedir}zlogsysd.py stop
     python ${basedir}zlogsysd.py start
 }
+syncdb(){
+	cd ${basedir}
+    python ${basedir}zlogsysd.py syncdb
+}
 redeploy(){
   cd ${basedir}
   python ${basedir}zlogsysd.py stop
@@ -53,8 +57,11 @@ restart
 redeploy)
 redeploy
 ;;
+syncdb)
+syncdb
+;;
 *)
 echo -e "[\033[40;31mInvalid Command.\033[0m]"
-echo -e "[\033[40;33mUsage:\033[0m] zlogsysd start|stop|restart|redeploy"
+echo -e "[\033[40;33mUsage:\033[0m] zlogsysd start|stop|restart|redeploy|syncdb"
 esac
 exit 0

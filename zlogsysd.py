@@ -116,13 +116,13 @@ if __name__ == '__main__':
 	webport = str2int(swport)
 	if webport == 0:
 		print "Loading Env...                                        [\033[1;31;40mFAILURE\033[0m]"
-		print "Invalid Value of '$webport'" % sys.argv[0]
+		print "Invalid Value of '$webport'"
 		sys.exit(2)
 	slport = os.environ.get('syslogport','9514')
 	syslogport = str2int(slport)
 	if syslogport == 0:
 		print "Loading Env...                                        [\033[1;31;40mFAILURE\033[0m]"
-		print "Invalid Value of '$syslogport'" % sys.argv[0]
+		print "Invalid Value of '$syslogport'"
 		sys.exit(2)
 	currname='zlogsysd'
 	daemon = MyDaemon(pidfile,'/dev/null',basedir+currname+'.out.log',basedir+currname+'.err.log')

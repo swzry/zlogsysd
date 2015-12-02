@@ -4,4 +4,4 @@ from
 
 DB_Init()
 
-LogApp.create()
+LogApp.create(id=BigInt)

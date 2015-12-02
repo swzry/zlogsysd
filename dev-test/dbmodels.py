@@ -9,20 +9,20 @@ class BaseModel(Model):
 	class Meta:
 		database = pwdb
 
-class LogApp(Model):
+class LogApp(BaseModel):
 	name = CharField(max_length=128)
 	desc = TextField()
 	appkey = CharField(max_length=128)
 	secret = CharField(max_length=128)
 
-class LogSrc(Model):
+class LogSrc(BaseModel):
 	name = CharField(max_length=128)
 	app = ForeignKeyField(LogApp)
 
 class LogItem(BaseModel):
 	id = BigIntegerField(primary_key=True)
 	src = ForeignKeyField(LogSrc)
-	level = CharField(max_length=4)
+	level = CharField(max_length=16)
 	time = DateTimeField()
 	content = TextField()
 

@@ -1,4 +1,4 @@
-import logging
+import logging,time,random
 
 def BigIntUniqueID():
 	ts = long(time.time()*100000000)
@@ -20,4 +20,5 @@ class BaseRedisHandler(logging.Handler):
 		self.redis.hset(key,'src',self.srcname)
 		self.redis.hset(key,'type','basic')
 		self.redis.hset(key,'level',str(record.levelno))
+		self.redis.hset(key,'content',record.getMessage())
 		self.redis.lpush(lkey,key)

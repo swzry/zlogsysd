@@ -31,9 +31,9 @@ class LogItem(BaseModel):
 
 def DB_Init():
 	pwdb.connect()
-	LogApp.create_table()
-	LogSrc.create_table()
-	LogItem.create_table()
+	LogApp.create_table(fail_silently=True)
+	LogSrc.create_table(fail_silently=True)
+	LogItem.create_table(fail_silently=True)
 	thisapp = LogApp.get_or_create(name="zlogsys",defaults={"desc":"This Log Server.","appkey":"","secret":""})
 	logsrc = LogSrc.get_or_create(name="serverlog")
 	logsrc.app = thisapp

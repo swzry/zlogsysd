@@ -65,7 +65,7 @@ def str2int(strs):
 def DoRedisQuene():
 	lst = redis.lrange(redis_conf['prefix']+'#sys_srclist',0,-1)
 	for i in lst:
-		while
+		pass
 
 
 ##============Start Server Threading============

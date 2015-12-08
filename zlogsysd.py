@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 from daemonlib import Daemon
 from bottle import Bottle,route,run,get,post,request,HTTPError,static_file,request,error,template
-import os,sys,time,traceback,datetime,threading,json
+import os,sys,time,traceback,datetime,threading,json,logging
 import dbsettings
 from dbmodels import  *
 now = lambda: time.strftime("[%Y-%b-%d %H:%M:%S]")
@@ -97,7 +97,7 @@ def dmInit():
 		serv.start()
 		worker.start()
 		SelfLoggerModel = LoggerModel("zlogsys","serverlog")
-		SelfLoggerModel.addlog('INFO','text/plain','Zlogsys Server Start')
+		SelfLoggerModel.addlog(logging.INFO,'text/plain','Zlogsys Server Start')
 	except Exception,e:
 		time.sleep(5)
 		s = traceback.format_exc()

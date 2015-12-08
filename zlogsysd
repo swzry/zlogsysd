@@ -41,7 +41,16 @@ redeploy(){
   git clean -f
   git pull
   git checkout master
-  git submodule foreach git pull origin master
+  python ${basedir}zlogsysd.py start
+}
+pulldev(){
+  cd ${basedir}
+  python ${basedir}zlogsysd.py stop
+  echo -e "[\033[40;33mUsage:Pulling Code From Git............\033[0m]"
+  git reset --hard origin/dev
+  git clean -f
+  git pull
+  git checkout dev
   python ${basedir}zlogsysd.py start
 }
 case "$1" in
@@ -57,12 +66,15 @@ restart
 redeploy)
 redeploy
 ;;
+pulldev)
+pulldev
+;;
 syncdb)
 syncdb
 ;;
 *)
 echo -e "[\033[40;31mInvalid Command.\033[0m]"
-echo -e "[\033[40;33mUsage:\033[0m] zlogsysd start|stop|restart|redeploy|syncdb"
+echo -e "[\033[40;33mUsage:\033[0m] zlogsysd start|stop|restart|redeploy|syncdb|pulldev"
 esac
 exit 0
 

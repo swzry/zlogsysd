@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 from dbsettings import ConfigurePeeWee
 from peewee import Model
-from peewee import CharField, BigIntegerField, TextField, ForeignKeyField, DateTimeField
+from peewee import CharField, IntegerField, BigIntegerField, TextField, ForeignKeyField, DateTimeField
 
 pwdb = ConfigurePeeWee()
 
@@ -22,8 +22,9 @@ class LogSrc(BaseModel):
 class LogItem(BaseModel):
 	id = BigIntegerField(primary_key=True)
 	src = ForeignKeyField(LogSrc)
-	level = CharField(max_length=16)
+	level = IntegerField()
 	time = DateTimeField()
+	type = CharField(max_length=32)
 	content = TextField()
 
 def DB_Init():

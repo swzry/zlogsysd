@@ -14,11 +14,16 @@ class BaseRedisHandler(logging.Handler):
 		self.prefix = prefix
 
 	def emit(self, record):
-		lkey = "%s#[%s](%s)"%(self.prefix,self.appname,self.srcname)
-		key = "%s[%s]%d"%(self.prefix,self.appname,BigIntUniqueID())
-		self.redis.hset(key,'app',self.appname)
-		self.redis.hset(key,'src',self.srcname)
-		self.redis.hset(key,'type','basic')
-		self.redis.hset(key,'level',str(record.levelno))
-		self.redis.hset(key,'content',record.getMessage())
-		self.redis.lpush(lkey,key)
+		try:
+			lkey = "%s$[%s](%s)"%(self.prefix,self.appname,self.srcname)
+			key = "%s[%s]%d"%(self.prefix,self.appname,BigIntUniqueID())
+			pipe =self.redis.pipeline()
+			pipe.hset(key,'app',self.appname)
+			pipe.hset(key,'src',self.srcname)
+			pipe.hset(key,'type','basic')
+			pipe.hset(key,'level',str(record.levelno))
+			pipe.hset(key,'content',record.getMessage())
+			pipe.lpush(lkey,key)
+			pipe.execute()
+		except Exception,e:
+			print "Err: %s"%repr(e)

@@ -1,10 +1,8 @@
 # -*- coding: UTF-8 -*-
 from daemonlib import Daemon
 from bottle import Bottle,route,run,get,post,request,HTTPError,static_file,request,error,template
-import MySQLdb
-import os.path
 import os,sys,time,traceback,datetime,threading,json
-import dbsettings,dbmodels
+import dbsettings
 now = lambda: time.strftime("[%Y-%b-%d %H:%M:%S]")
 maxdate=datetime.datetime.fromtimestamp(2140000000)
 ##============Global Variable============
@@ -12,6 +10,8 @@ basedir,pidfile,currname,shost = "","","",""
 webport,syslogport = 9564,9514
 CGI = None
 proccessMonitorOn = False
+redis,redis_conf = dbsettings.ConfigureRedis()
+from dbmodels import  *
 ##============================
 def RouteTable(app):
 	cgiapp=CGI_APP()
@@ -38,9 +38,10 @@ def RouteTable(app):
 ##============CGI APP Class============
 class CGI_APP:
 	def index(self):
-		return template('BuildingPage')
+		return 'Constructing...'
 	def about(self):
 		return currname+" (Now Building...)"
+
 
 ##============Error Pages Class============
 class ERR_PAGES:
@@ -60,6 +61,12 @@ def str2int(strs):
 	else:
 		return int(strr)
 
+def DoRedisQuene():
+	lst = redis.lrange(redis_conf['prefix']+'#sys_srclist',0,-1)
+	for i in lst:
+		while
+
+
 ##============Start Server Threading============
 class RunCGIServer(threading.Thread):
 	def run(self):
@@ -71,7 +78,8 @@ class RunWorker(threading.Thread)
 	def run(self):
 		while 1:
 			try:
-				pass
+				DoRedisQuene()
+				time.sleep(20)
 
 ##============Init============
 def dmInit():
@@ -80,7 +88,9 @@ def dmInit():
 	try:
 		os.chdir(basedir)
 		serv = RunCGIServer()
+		worker = RunWorker()
 		serv.start()
+		worker.start()
 	except Exception,e:
 		time.sleep(5)
 		s = traceback.format_exc()
@@ -88,8 +98,7 @@ def dmInit():
 		sys.stderr.flush()
 
 def syncdb():
-	rdo,dbe,dbs = dbsettings.Configure()
-	dbmodels.init_db(dbe)
+	DB_Init()
 
 ##============Daemon System============
 class MyDaemon(Daemon):
@@ -145,6 +154,7 @@ if __name__ == '__main__':
 			daemon.restart()
 		elif 'syncdb' == sys.argv[1]:
 			syncdb()
+			print "Database Sync....                                      [\033[1;32;40mOK\033[0m]"
 		else:
 			print "Unknown Command"
 			sys.exit(2)

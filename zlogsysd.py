@@ -75,7 +75,7 @@ class RunCGIServer(threading.Thread):
 		RouteTable(CGI)
 		CGI.run(host=webhost,port=webport,server='cherrypy')
 
-class RunWorker(threading.Thread)
+class RunWorker(threading.Thread):
 	def run(self):
 		while 1:
 			try:

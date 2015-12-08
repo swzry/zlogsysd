@@ -35,7 +35,9 @@ def DB_Init():
 	LogSrc.create_table()
 	LogItem.create_table()
 	thisapp = LogApp.get_or_create(name="zlogsys",defaults={"desc":"This Log Server.","appkey":"","secret":""})
-	LogSrc.get_or_create(name="serverlog",defaults={"app":thisapp})
+	logsrc = LogSrc.get_or_create(name="serverlog")
+	logsrc.app = thisapp
+	logsrc.save()
 
 class Exceptions:
 	class LogAppNotExist(Exception):

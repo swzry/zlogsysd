@@ -40,6 +40,8 @@ def DB_Init():
 class Exceptions:
 	class LogAppNotExist(Exception):
 		pass
+	class LogSrcNotExist(Exception):
+		pass
 
 class LoggerModel():
 	def __init__(self,logappname,logsrcname):
@@ -49,7 +51,7 @@ class LoggerModel():
 		except LogApp.DoesNotExist:
 			raise Exceptions.LogAppNotExist
 		except LogSrc.DoesNotExist:
-			raise  Exceptions.LogAppNotExist
+			raise  Exceptions.LogSrcNotExist
 
 	def addlog(self,level,type,content):
 			LogItem.create(id=BigIntUniqueID(),src=self.logsrc,level=level,time=datetime.datetime.now(),content=repr(uuid.uuid4()))

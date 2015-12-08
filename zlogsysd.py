@@ -3,6 +3,7 @@ from daemonlib import Daemon
 from bottle import Bottle,route,run,get,post,request,HTTPError,static_file,request,error,template
 import os,sys,time,traceback,datetime,threading,json
 import dbsettings
+from dbmodels import  *
 now = lambda: time.strftime("[%Y-%b-%d %H:%M:%S]")
 maxdate=datetime.datetime.fromtimestamp(2140000000)
 ##============Global Variable============
@@ -11,7 +12,7 @@ webport,syslogport = 9564,9514
 CGI = None
 proccessMonitorOn = False
 redis,redis_conf = dbsettings.ConfigureRedis()
-from dbmodels import  *
+SelfLoggerModel = None
 ##============================
 def RouteTable(app):
 	cgiapp=CGI_APP()
@@ -80,6 +81,10 @@ class RunWorker(threading.Thread)
 			try:
 				DoRedisQuene()
 				time.sleep(20)
+			except Exception,e:
+				s = traceback.format_exc()
+				sys.stderr.write("\n"+now()+"Application was shutdown by a fatal error.\n%s\n"%s)
+				sys.stderr.flush()
 
 ##============Init============
 def dmInit():
@@ -91,6 +96,8 @@ def dmInit():
 		worker = RunWorker()
 		serv.start()
 		worker.start()
+		SelfLoggerModel = LoggerModel("zlogsys","serverlog")
+		SelfLoggerModel.addlog('INFO','text/plain','Zlogsys Server Start')
 	except Exception,e:
 		time.sleep(5)
 		s = traceback.format_exc()

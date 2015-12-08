@@ -3,7 +3,7 @@ from dbsettings import ConfigurePeeWee
 from peewee import Model
 from peewee import CharField, IntegerField, BigIntegerField, TextField, ForeignKeyField, DateTimeField
 from DataConvert import BigIntUniqueID
-import uuid,datetime
+import datetime
 
 pwdb = ConfigurePeeWee()
 
@@ -54,4 +54,4 @@ class LoggerModel():
 			raise  Exceptions.LogSrcNotExist
 
 	def addlog(self,level,ctype,content):
-			LogItem.create(id=BigIntUniqueID(),src=self.logsrc,level=level,type=ctype,time=datetime.datetime.now(),content=repr(uuid.uuid4()))
+			LogItem.create(id=BigIntUniqueID(),src=self.logsrc,level=level,type=ctype,time=datetime.datetime.now(),content=content)

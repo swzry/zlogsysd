@@ -88,8 +88,11 @@ def DoRedisQuene():
 		except Exceptions,e:
 			SelfFailureLoggerModel.addlog(logging.WARNING,'text/plain',"[%s]<FailedDumpRedis>%s"%(i,repr(e)))
 
-
-
+def RefreshConfig():
+	lsrckey = redis_conf['prefix']+'#sys_srclist'
+	redis.delete(lsrckey)
+	for i in LogSrc.select():
+		redis.lpush(lsrckey,i.app.name+"@"+i.name)
 
 ##============Start Server Threading============
 class RunCGIServer(threading.Thread):
@@ -118,6 +121,7 @@ def dmInit():
 		os.chdir(basedir)
 		SelfLoggerModel = LoggerModel("zlogsys","serverlog")
 		SelfFailureLoggerModel = LoggerModel("zlogsys","failure")
+		RefreshConfig()
 		serv = RunCGIServer()
 		worker = RunWorker()
 		serv.start()

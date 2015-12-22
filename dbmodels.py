@@ -56,3 +56,5 @@ class LoggerModel():
 
 	def addlog(self,level,ctype,content):
 			LogItem.create(id=BigIntUniqueID(),src=self.logsrc,level=level,type=ctype,time=datetime.datetime.now(),content=content)
+
+# TODO: 数据库索引

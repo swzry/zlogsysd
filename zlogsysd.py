@@ -63,6 +63,7 @@ def str2int(strs):
 		return int(strr)
 
 def DoRedisQuene():
+	global SelfLoggerModel,SelfFailureLoggerModel
 	SelfLoggerModel.addlog(logging.DEBUG,'text/plain','DoRedisQuene')
 	lst = redis.lrange(redis_conf['prefix']+'#sys_srclist',0,-1)
 	SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',"<DEBUG>%s"%repr(lst))

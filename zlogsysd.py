@@ -110,6 +110,7 @@ class RunWorker(threading.Thread):
 
 ##============Init============
 def dmInit():
+	global SelfLoggerModel,SelfFailureLoggerModel
 	reload(sys)
 	sys.setdefaultencoding('utf-8')
 	try:

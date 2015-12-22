@@ -37,8 +37,8 @@
       <file leaf-file-name="zlogsysd.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/zlogsysd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.25082508">
-              <caret line="66" column="83" selection-start-line="66" selection-start-column="83" selection-end-line="66" selection-end-column="83" />
+            <state vertical-scroll-proportion="0.12541254">
+              <caret line="65" column="67" selection-start-line="65" selection-start-column="67" selection-end-line="65" selection-end-column="67" />
               <folding>
                 <element signature="e#24#52#0" expanded="true" />
               </folding>
@@ -567,7 +567,13 @@
       <option name="project" value="LOCAL" />
       <updated>1450814743775</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="~&#10;">
+      <created>1450815033513</created>
+      <option name="number" value="00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1450815033513</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -892,8 +898,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/zlogsysd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25082508">
-          <caret line="66" column="83" selection-start-line="66" selection-start-column="83" selection-end-line="66" selection-end-column="83" />
+        <state vertical-scroll-proportion="0.12541254">
+          <caret line="65" column="67" selection-start-line="65" selection-start-column="67" selection-end-line="65" selection-end-column="67" />
           <folding>
             <element signature="e#24#52#0" expanded="true" />
           </folding>

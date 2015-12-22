@@ -137,6 +137,11 @@ def dmInit():
 def syncdb():
 	DB_Init()
 
+def InstallTestData():
+	testapp,created = LogApp.get_or_create(name="TestApp",defaults={"desc":"App For Test.","appkey":"","secret":""})
+	LogSrc.get_or_create(name="TestSource",defaults={"app":testapp.id})
+	RefreshConfig()
+
 ##============Daemon System============
 class MyDaemon(Daemon):
 	def _run(self):
@@ -195,6 +200,14 @@ if __name__ == '__main__':
 		else:
 			print "Unknown Command"
 			sys.exit(2)
+		sys.exit(0)
+	elif len(sys.argv) == 3:
+		if 'syncdb' == sys.argv[1]:
+			if '--with-testdata' == sys.argv[2]:
+				syncdb()
+				print "Database Sync....                                      [\033[1;32;40mOK\033[0m]"
+				InstallTestData()
+				print "Install Test Data....                                  [\033[1;32;40mOK\033[0m]"
 		sys.exit(0)
 	else:
 		print "Command Format: %s start|stop|restart" % currname

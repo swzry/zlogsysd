@@ -12,7 +12,7 @@ webport,syslogport = 9564,9514
 CGI = None
 proccessMonitorOn = False
 redis,redis_conf = dbsettings.ConfigureRedis()
-SelfLoggerModel = None
+SelfLoggerModel,SelfFailureLoggerModel = None,None
 ##============================
 def RouteTable(app):
 	cgiapp=CGI_APP()
@@ -36,8 +36,8 @@ def RouteTable(app):
 	app.error(403)(errpages.ERR403)
 	app.error(500)(errpages.ERR500)
 	app.error(500)(errpages.ERR500)
-##============CGI APP Class============
 class CGI_APP:
+##============CGI APP Class============
 	def index(self):
 		return 'Constructing...'
 	def about(self):
@@ -65,7 +65,27 @@ def str2int(strs):
 def DoRedisQuene():
 	lst = redis.lrange(redis_conf['prefix']+'#sys_srclist',0,-1)
 	for i in lst:
-		pass
+		try:
+			srcobjn = i.split("@",2)
+			if not len(srcobjn) == 2:
+				raise Exception("Invalid SrcInfo in 'srclist'")
+			lkeyname = "%s$[%s](%s)" % (redis_conf['prefix'],srcobjn[0],srcobjn[1])
+			iLoggerModel = LoggerModel(srcobjn[0],srcobjn[1])
+			while 1:
+				kd = redis.lpop(lkeyname)
+				if not kd:
+					break
+				try:
+					dType    = redis.hget(kd,'type')
+					dLevel   = str2int(redis.hget(kd,'level'))
+					dContent = redis.hget(kd,'content')
+					iLoggerModel.addlog(dLevel,dType,dContent)
+				except Exceptions,e:
+					SelfFailureLoggerModel.addlog(logging.WARNING,'text/plain',"[%s]<FailedWriteDB>%s"%(i,repr(e)))
+		except Exceptions,e:
+			SelfFailureLoggerModel.addlog(logging.WARNING,'text/plain',"[%s]<FailedDumpRedis>%s"%(i,repr(e)))
+
+
 
 
 ##============Start Server Threading============
@@ -97,6 +117,7 @@ def dmInit():
 		serv.start()
 		worker.start()
 		SelfLoggerModel = LoggerModel("zlogsys","serverlog")
+		SelfFailureLoggerModel = LoggerModel("zlogsys","failure")
 		SelfLoggerModel.addlog(logging.INFO,'text/plain','Zlogsys Server Start')
 	except Exception,e:
 		time.sleep(5)

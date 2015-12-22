@@ -31,12 +31,16 @@ restart(){
 }
 syncdb(){
 	if [ "$#" -eq "1" ]
+	then
 	    cd ${basedir}
         python ${basedir}zlogsysd.py syncdb
-    fi
-    if [ "$#" -eq "2" ]
+    elif [ "$#" -eq "2" ]
+    then
     	cd ${basedir}
         python ${basedir}zlogsysd.py syncdb $2
+    else
+        echo -e "[\033[40;31mInvalid Command.\033[0m]"
+        echo -e "[\033[40;33mUsage:\033[0m] zlogsysd syncdb [--with-testdata]"
     fi
 }
 redeploy(){

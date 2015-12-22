@@ -30,8 +30,14 @@ restart(){
     python ${basedir}zlogsysd.py start
 }
 syncdb(){
-	cd ${basedir}
-    python ${basedir}zlogsysd.py syncdb
+	if [ "$#" -eq "1" ]
+	    cd ${basedir}
+        python ${basedir}zlogsysd.py syncdb
+    fi
+    if [ "$#" -eq "2" ]
+    	cd ${basedir}
+        python ${basedir}zlogsysd.py syncdb $2
+    fi
 }
 redeploy(){
   cd ${basedir}

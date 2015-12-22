@@ -64,6 +64,7 @@ def str2int(strs):
 
 def DoRedisQuene():
 	lst = redis.lrange(redis_conf['prefix']+'#sys_srclist',0,-1)
+	SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',"<DEBUG>%s"%repr(lst))
 	for i in lst:
 		try:
 			srcobjn = i.split("@",2)

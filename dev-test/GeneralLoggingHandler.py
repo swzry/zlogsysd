@@ -20,7 +20,7 @@ class BaseRedisHandler(logging.Handler):
 			pipe =self.redis.pipeline()
 			pipe.hset(key,'app',self.appname)
 			pipe.hset(key,'src',self.srcname)
-			pipe.hset(key,'type','basic')
+			pipe.hset(key,'type','text/plain')
 			pipe.hset(key,'level',str(record.levelno))
 			pipe.hset(key,'content',record.getMessage())
 			pipe.lpush(lkey,key)

@@ -118,6 +118,7 @@ def dmInit():
 		worker.start()
 		SelfLoggerModel = LoggerModel("zlogsys","serverlog")
 		SelfFailureLoggerModel = LoggerModel("zlogsys","failure")
+		SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain','Zlogsys FailureLog Test')
 		SelfLoggerModel.addlog(logging.INFO,'text/plain','Zlogsys Server Start')
 	except Exception,e:
 		time.sleep(5)

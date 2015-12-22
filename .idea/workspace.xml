@@ -49,8 +49,8 @@
       <file leaf-file-name="zlogsysd" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/zlogsysd">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8118812">
-              <caret line="43" column="6" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
+            <state vertical-scroll-proportion="0.56435645">
+              <caret line="36" column="17" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -621,7 +621,13 @@
       <option name="project" value="LOCAL" />
       <updated>1450818875701</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="~&#10;">
+      <created>1450819472118</created>
+      <option name="number" value="00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1450819472118</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -958,8 +964,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/zlogsysd">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8118812">
-          <caret line="43" column="6" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
+        <state vertical-scroll-proportion="0.56435645">
+          <caret line="36" column="17" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
           <folding />
         </state>
       </provider>

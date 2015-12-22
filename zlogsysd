@@ -30,11 +30,11 @@ restart(){
     python ${basedir}zlogsysd.py start
 }
 syncdb(){
-	if [ "$#" -eq "1" ]
+	if [ $# == 1 ]
 	then
 	    cd ${basedir}
         python ${basedir}zlogsysd.py syncdb
-    elif [ "$#" -eq "2" ]
+    elif [ $# == 2 ]
     then
     	cd ${basedir}
         python ${basedir}zlogsysd.py syncdb $2

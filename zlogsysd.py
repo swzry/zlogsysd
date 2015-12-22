@@ -82,6 +82,7 @@ def DoRedisQuene():
 					dType    = redis.hget(kd,'type')
 					dLevel   = str2int(redis.hget(kd,'level'))
 					dContent = redis.hget(kd,'content')
+					redis.delete(kd)
 					iLoggerModel.addlog(dLevel,dType,dContent)
 				except Exceptions,e:
 					SelfFailureLoggerModel.addlog(logging.WARNING,'text/plain',"[%s]<FailedWriteDB>%s"%(i,repr(e)))

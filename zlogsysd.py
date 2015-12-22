@@ -114,12 +114,12 @@ def dmInit():
 	sys.setdefaultencoding('utf-8')
 	try:
 		os.chdir(basedir)
+		SelfLoggerModel = LoggerModel("zlogsys","serverlog")
+		SelfFailureLoggerModel = LoggerModel("zlogsys","failure")
 		serv = RunCGIServer()
 		worker = RunWorker()
 		serv.start()
 		worker.start()
-		SelfLoggerModel = LoggerModel("zlogsys","serverlog")
-		SelfFailureLoggerModel = LoggerModel("zlogsys","failure")
 		SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain','Zlogsys FailureLog Test')
 		SelfLoggerModel.addlog(logging.INFO,'text/plain','Zlogsys Server Start')
 	except Exception,e:

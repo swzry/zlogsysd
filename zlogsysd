@@ -30,18 +30,12 @@ restart(){
     python ${basedir}zlogsysd.py start
 }
 syncdb(){
-	if [ $# -eq 1 ]
-	then
 	    cd ${basedir}
         python ${basedir}zlogsysd.py syncdb
-    elif [ $# -eq 2 ]
-    then
+}
+syncdb2(){
     	cd ${basedir}
-        python ${basedir}zlogsysd.py syncdb $2
-    else
-        echo -e "[\033[40;31mInvalid Command.\033[0m]"
-        echo -e "[\033[40;33mUsage:\033[0m] zlogsysd syncdb [--with-testdata]"
-    fi
+        python ${basedir}zlogsysd.py syncdb $1
 }
 redeploy(){
   cd ${basedir}
@@ -80,7 +74,16 @@ pulldev)
 pulldev
 ;;
 syncdb)
-syncdb
+    if [ $# -eq 1 ]
+    then
+        syncdb
+    elif [ $# -eq 2 ]
+    then
+        syncdb2 $2
+    else
+        echo -e "[\033[40;31mInvalid Command.\033[0m]"
+        echo -e "[\033[40;33mUsage:\033[0m] zlogsysd syncdb [--with-testdata]"
+    fi
 ;;
 *)
 echo -e "[\033[40;31mInvalid Command.\033[0m]"

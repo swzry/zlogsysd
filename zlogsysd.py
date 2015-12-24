@@ -51,11 +51,11 @@ def CheckLogin(func):
 
 class CGI_APP:
 ##============CGI APP Class============
+	@CheckLogin
 	def index(self):
-
 		kwvars = {
 			"PageTitle":"日志系统管理",
-			"auth":authobj,
+			"auth":auth,
 		}
 		return template('home.html',**kwvars)
 	def about(self):

@@ -36,11 +36,26 @@ def RouteTable(app):
 	app.error(403)(errpages.ERR403)
 	app.error(500)(errpages.ERR500)
 	app.error(500)(errpages.ERR500)
+
+class AuthObj(object):
+	islogin = False
+
+def CheckLogin(func):
+	def wrapper(*args,**kwargs):
+		authobj = AuthObj()
+		kwargs ["auth"] = authobj
+		result = func(*args,**kwargs)
+		return result
+
+	return wrapper
+
 class CGI_APP:
 ##============CGI APP Class============
 	def index(self):
+
 		kwvars = {
-			"PageTitle":"日志系统管理"
+			"PageTitle":"日志系统管理",
+			"auth":authobj,
 		}
 		return template('home.html',**kwvars)
 	def about(self):

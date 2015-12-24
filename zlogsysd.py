@@ -39,7 +39,10 @@ def RouteTable(app):
 class CGI_APP:
 ##============CGI APP Class============
 	def index(self):
-		return 'Constructing...'
+		kwvars = {
+			"PageTitle":"日志系统管理"
+		}
+		return template('home.html',**kwvars)
 	def about(self):
 		return currname+" (Now Building...)"
 

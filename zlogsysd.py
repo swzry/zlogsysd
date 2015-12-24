@@ -19,6 +19,7 @@ def RouteTable(app):
 	errpages=ERR_PAGES()
 ##============URL Route List============
 	routeDict = {
+		'/static/<filename:path>':cgiapp.static,
 		'/': cgiapp.index,
 		'/about/': cgiapp.about,
 	}
@@ -51,6 +52,8 @@ def CheckLogin(func):
 
 class CGI_APP:
 ##============CGI APP Class============
+	def static(self,filename):
+		return static_file(filename, root='static')
 	@CheckLogin
 	def index(self,auth=None):
 		kwvars = {

@@ -52,7 +52,7 @@ def CheckLogin(func):
 class CGI_APP:
 ##============CGI APP Class============
 	@CheckLogin
-	def index(self):
+	def index(self,auth=None):
 		kwvars = {
 			"PageTitle":"日志系统管理",
 			"auth":auth,

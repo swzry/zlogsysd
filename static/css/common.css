@@ -1,0 +1,31 @@
+body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 {
+	font-family: 微软雅黑, Verdana, Geneva, sans-serif;
+}
+
+.v-align-middle{
+	vertical-align: middle !important ;
+}
+.mobi-navmenu{
+	background-color: #DEDEDE;
+}
+@media (max-width: 767px){
+	.main-container{
+		width: 95%;
+	}
+}
+@media (min-width: 767px){
+	.main-container{
+		width: 70%;
+	}
+}
+
+@media (max-width: 767px){
+	.main-container-with-sidebar{
+		width: 95%;
+	}
+}
+@media (min-width: 767px){
+	.main-container-with-sidebar{
+		width: 90%;
+	}
+}

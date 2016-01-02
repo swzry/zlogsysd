@@ -21,6 +21,7 @@ def RouteTable(app):
 	routeDict = {
 		'/static/<filename:path>':cgiapp.static,
 		'/': cgiapp.index,
+		'/login/': cgiapp.login,
 		'/about/': cgiapp.about,
 	}
 	getDict = {

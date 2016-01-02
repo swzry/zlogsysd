@@ -65,13 +65,13 @@ class CGI_APP:
 ##============CGI APP Class============
 	def static(self,filename):
 		return static_file(filename, root='static')
-	@CheckLogin
 	def login(self):
 		if request.method == "POST":
 			username = request.forms.get("username")
 			password = request.forms.get("password")
 		else:
 			return  template("login.html")
+	@CheckLogin
 	def index(self,auth=None):
 		kwvars = {
 			"PageTitle":"日志系统管理",

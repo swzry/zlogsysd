@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 from daemonlib import Daemon
-from bottle import Bottle,route,run,get,post,request,HTTPError,static_file,request,error,template
+from bottle import Bottle,route,run,get,post,request,HTTPError,static_file,request,error,template,redirect
 import os,sys,time,traceback,datetime,threading,json,logging
 import dbsettings
 from dbmodels import  *
@@ -39,15 +39,25 @@ def RouteTable(app):
 	app.error(500)(errpages.ERR500)
 
 class AuthObj(object):
-	islogin = False
+	username = None
+
+class AuthStatus():
+	class NotLoggedIn(Exception):
+		pass
 
 def CheckLogin(func):
 	def wrapper(*args,**kwargs):
-		authobj = AuthObj()
-		kwargs ["auth"] = authobj
-		result = func(*args,**kwargs)
-		return result
-
+		try:
+			try:
+				cktoken = request.cookies.get('authtoken')
+			except:
+				raise AuthStatus.NotLoggedIn
+			authobj = AuthObj()
+			kwargs ["auth"] = authobj
+			result = func(*args,**kwargs)
+			return result
+		except AuthStatus.NotLoggedIn:
+			redirect("/login/",code=302)
 	return wrapper
 
 class CGI_APP:
@@ -55,6 +65,12 @@ class CGI_APP:
 	def static(self,filename):
 		return static_file(filename, root='static')
 	@CheckLogin
+	def login(self):
+		if request.method == "POST":
+			username = request.forms.get("username")
+			password = request.forms.get("password")
+		else:
+			return  template("login.html")
 	def index(self,auth=None):
 		kwvars = {
 			"PageTitle":"日志系统管理",

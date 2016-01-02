@@ -1,0 +1,85 @@
+% rebase('base.html',PageTitle=PageTitle)
+<h1>管理登陆</h1>
+
+<script type="text/javascript" src="/static/js/jsbn.js"></script>
+<script type="text/javascript" src="/static/js/prng4.js"></script>
+<script type="text/javascript" src="/static/js/rng.js"></script>
+<script type="text/javascript" src="/static/js/rsa.js"></script>
+<script type="text/javascript" src="/static/js/base64.js"></script>
+
+<script>
+	function crypt(){
+	var e_,n_,u_,p_;
+	e_=$('#{{e_char}}').val();
+	n_=$('#{{n_char}}').val();
+	u_=$('#user').val();
+	p_=$('#pass').val();
+	console.log(e_);
+	console.log(n_);
+	try{
+		var rsa = new RSAKey();
+		rsa.setPublic(n_, e_);
+		var res = rsa.encrypt(u_);
+	}catch(err){
+		alert("传输加密失败，错误详情如下：\n"+err);
+		return false;
+	}
+	if(res) {
+	    $('#user').val(hex2b64(res));
+	    console.log(res);
+	}else{
+	alert("传输加密失败，错误原因未知！");
+	return false;
+	}
+
+	try{
+		var rsa = new RSAKey();
+		rsa.setPublic(n_, e_);
+		var res = rsa.encrypt(p_);
+	}catch(err){
+		alert("传输加密失败，错误详情如下：\n"+err);
+		return false;
+	}
+	if(res) {
+	    $('#pass').val(hex2b64(res));
+	    console.log(res);
+	}else{
+	alert("传输加密失败，错误原因未知！");
+	return false;
+	}
+	return true;
+	//return confirm("Submit?");
+	}
+</script>
+
+<form action="{{submiturl}}" method="post" onsubmit="return crypt();">
+	<input type="hidden" name="referer" id="referer" value="{{ref}}" />
+	<label  class="sr-only">账 号</label>
+	<input class="form-control lgipt" id="user" name="username" placeholder="请输入用户名" type="text" value="" />
+	<label  class="sr-only">密 码</label>
+	<input class="form-control lgipt" id="pass" name="password" placeholder="请输入密码" type="password" value="" />
+	<br />
+	<div class="row">
+		<div class="col-md-5"> <b>登陆有效期：</b>
+		</div>
+		<div class="col-md-7">
+			<select id="logexp" name="logexp">
+				<option value="1" selected="selected">1天</option>
+				<option value="7">1周</option>
+				<option value="30">30天</option>
+				<option value="365">1年</option>
+				<option value="1825">5年</option>
+				<option value="forever">永久</option>
+			</select>
+		</div>
+	</div>
+	<button class="btn btn-primary btn-lg btn-block" type="submit" name="submit" value="提交">
+		<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+		&nbsp;&nbsp;&nbsp;登陆
+	</button>
+	<!-- 						<div class="row">
+	<div class="col-md-3 col-md-offset-3"></div>
+	<div class="col-md-3"></div>
+</div>
+-->
+</form>

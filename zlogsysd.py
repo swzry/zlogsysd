@@ -70,7 +70,11 @@ class CGI_APP:
 			username = request.forms.get("username")
 			password = request.forms.get("password")
 		else:
-			return  template("login.html")
+			ref = request.headers.get("REFERER")
+			if ref == None or ref == "":
+				ref = "/"
+			kwvars = {"PageTitle":"管理登陆","ref":ref}
+			return  template("login.html",**kwvars)
 	@CheckLogin
 	def index(self,auth=None):
 		kwvars = {

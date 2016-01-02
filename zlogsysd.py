@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 from daemonlib import Daemon
 from bottle import Bottle,route,run,get,post,request,HTTPError,static_file,request,error,template,redirect
-import os,sys,time,traceback,datetime,threading,json,logging
+import os,sys,time,traceback,datetime,threading,json,logging,rsa
 import dbsettings
 from dbmodels import  *
 now = lambda: time.strftime("[%Y-%b-%d %H:%M:%S]")
@@ -13,6 +13,7 @@ CGI = None
 proccessMonitorOn = False
 redis,redis_conf = dbsettings.ConfigureRedis()
 SelfLoggerModel,SelfFailureLoggerModel = None,None
+RSAKEY = {}
 ##============================
 def RouteTable(app):
 	cgiapp=CGI_APP()
@@ -73,7 +74,12 @@ class CGI_APP:
 			ref = request.headers.get("REFERER")
 			if ref == None or ref == "":
 				ref = "/"
-			kwvars = {"PageTitle":"管理登陆","ref":ref}
+			kwvars = {
+				"PageTitle":"管理登陆",
+				"ref":ref,
+				"keyn":RSAKEY['login_pub']['n'],
+				"keye":RSAKEY['login_pub']['e'],
+			}
 			return  template("login.html",**kwvars)
 	@CheckLogin
 	def index(self,auth=None):
@@ -156,6 +162,23 @@ class RunWorker(threading.Thread):
 				sys.stderr.flush()
 
 ##============Init============
+
+def LoadRSAKeys():
+	global RSAKEY
+	with open('passwd/loginkey.pem') as fpub:
+		RSAKEY['login_pub'] = rsa.PublicKey.load_pkcs1(fpub.read(),'PEM')
+	with open('passwd/loginkey.pem') as fpub:
+		RSAKEY['login_pub'] = rsa.PublicKey.load_pkcs1(fpub.read(),'PEM')
+
+def RebuildKeys():
+	(pub,prv) = rsa.newkeys(2048)
+	dfpub = pub.save_pkcs1_pem()
+	dfprv = prv.save_pkcs1_pem()
+	with open('passwd/loginkey_pub.pem') as fpub:
+		fpub.write(dfpub)
+	with open('passwd/loginkey_prv.pem') as fprv:
+		fprv.write(dfprv)
+
 def dmInit():
 	global SelfLoggerModel,SelfFailureLoggerModel
 	reload(sys)
@@ -171,6 +194,15 @@ def dmInit():
 		worker.start()
 		SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain','Zlogsys FailureLog Test')
 		SelfLoggerModel.addlog(logging.INFO,'text/plain','Zlogsys Server Start')
+		try:
+			LoadRSAKeys()
+			SelfLoggerModel.addlog(logging.INFO,'text/plain','RSA Key Loaded.')
+		except:
+			SelfLoggerModel.addlog(logging.WARNING,'text/plain','Invalid RSA Key, Rebuilding Key...')
+			RebuildKeys()
+			SelfLoggerModel.addlog(logging.INFO,'text/plain','RSA Key Rebuild.')
+			LoadRSAKeys()
+			SelfLoggerModel.addlog(logging.INFO,'text/plain','RSA Key Loaded.')
 	except Exception,e:
 		time.sleep(5)
 		s = traceback.format_exc()

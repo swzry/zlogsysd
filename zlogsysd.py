@@ -172,8 +172,8 @@ def LoadRSAKeys():
 
 def RebuildKeys():
 	(pub,prv) = rsa.newkeys(2048)
-	dfpub = pub.save_pkcs1_pem()
-	dfprv = prv.save_pkcs1_pem()
+	dfpub = pub.save_pkcs1(format="PEM")
+	dfprv = prv.save_pkcs1(format="PEM")
 	with open('passwd/loginkey_pub.pem') as fpub:
 		fpub.write(dfpub)
 	with open('passwd/loginkey_prv.pem') as fprv:

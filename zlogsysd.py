@@ -165,10 +165,10 @@ class RunWorker(threading.Thread):
 
 def LoadRSAKeys():
 	global RSAKEY
-	with open('passwd/loginkey.pem') as fpub:
+	with open('passwd/loginkey_pub.pem') as fpub:
 		RSAKEY['login_pub'] = rsa.PublicKey.load_pkcs1(fpub.read(),'PEM')
-	with open('passwd/loginkey.pem') as fpub:
-		RSAKEY['login_pub'] = rsa.PublicKey.load_pkcs1(fpub.read(),'PEM')
+	with open('passwd/loginkey_prv.pem') as fpub:
+		RSAKEY['login_prv'] = rsa.PublicKey.load_pkcs1(fpub.read(),'PEM')
 
 def RebuildKeys():
 	(pub,prv) = rsa.newkeys(2048)

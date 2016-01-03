@@ -55,34 +55,38 @@
 <input type="hidden" id="rsakeyn" value="{{keyn}}" />
 <input type="hidden" id="rsakeye" value="{{keye}}" />
 
-<form action="" method="post" onsubmit="return crypt();">
-	<input type="hidden" name="referer" id="referer" value="{{ref}}" />
-	<label  class="sr-only">账 号</label>
-	<input class="form-control lgipt" id="user" name="username" placeholder="请输入用户名" type="text" value="" />
-	<label  class="sr-only">密 码</label>
-	<input class="form-control lgipt" id="pass" name="password" placeholder="请输入密码" type="password" value="" />
-	<br />
-	<div class="row">
-		<div class="col-md-5"> <b>登陆有效期：</b>
+<div class="container" style="width:40%">
+	<div class="well-lg">
+		<form action="" method="post" onsubmit="return crypt();">
+			<input type="hidden" name="referer" id="referer" value="{{ref}}" />
+			<label  class="sr-only">账 号</label>
+			<input class="form-control lgipt" id="user" name="username" placeholder="请输入用户名" type="text" value="" />
+			<label  class="sr-only">密 码</label>
+			<input class="form-control lgipt" id="pass" name="password" placeholder="请输入密码" type="password" value="" />
+			<br />
+			<div class="row">
+				<div class="col-md-5"> <b>登陆有效期：</b>
+				</div>
+				<div class="col-md-7">
+					<select id="logexp" name="logexp">
+						<option value="1" selected="selected">1天</option>
+						<option value="7">1周</option>
+						<option value="30">30天</option>
+						<option value="365">1年</option>
+						<option value="1825">5年</option>
+						<option value="forever">永久</option>
+					</select>
+				</div>
+			</div>
+			<button class="btn btn-primary btn-lg btn-block" type="submit" name="submit" value="提交">
+				<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+				&nbsp;&nbsp;&nbsp;登陆
+			</button>
+			<!-- 						<div class="row">
+			<div class="col-md-3 col-md-offset-3"></div>
+			<div class="col-md-3"></div>
 		</div>
-		<div class="col-md-7">
-			<select id="logexp" name="logexp">
-				<option value="1" selected="selected">1天</option>
-				<option value="7">1周</option>
-				<option value="30">30天</option>
-				<option value="365">1年</option>
-				<option value="1825">5年</option>
-				<option value="forever">永久</option>
-			</select>
-		</div>
-	</div>
-	<button class="btn btn-primary btn-lg btn-block" type="submit" name="submit" value="提交">
-		<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
-		&nbsp;&nbsp;&nbsp;登陆
-	</button>
-	<!-- 						<div class="row">
-	<div class="col-md-3 col-md-offset-3"></div>
-	<div class="col-md-3"></div>
+		-->
+	</form>
 </div>
--->
-</form>
+</div>

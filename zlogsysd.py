@@ -77,8 +77,8 @@ class CGI_APP:
 			kwvars = {
 				"PageTitle":"管理登陆",
 				"ref":ref,
-				"keyn":RSAKEY['login_pub']['n'],
-				"keye":RSAKEY['login_pub']['e'],
+				"keyn":hex(RSAKEY['login_pub']['n'])[2:],
+				"keye":hex(RSAKEY['login_pub']['e'])[2:],
 			}
 			return  template("login.html",**kwvars)
 	@CheckLogin
@@ -201,8 +201,9 @@ def dmInit():
 		try:
 			LoadRSAKeys()
 			SelfLoggerModel.addlog(logging.INFO,'text/plain','RSA Key Loaded.')
-		except:
-			SelfLoggerModel.addlog(logging.WARNING,'text/plain','Invalid RSA Key, Rebuilding Key...')
+		except Exception,e:
+			SelfLoggerModel.addlog(logging.WARNING,'text/plain','Invalid RSA Key: %s'%repr(e))
+			SelfLoggerModel.addlog(logging.INFO,'text/plain','Rebuilding Key...')
 			RebuildKeys()
 			SelfLoggerModel.addlog(logging.INFO,'text/plain','RSA Key Rebuild.')
 			LoadRSAKeys()

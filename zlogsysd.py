@@ -174,9 +174,13 @@ def RebuildKeys():
 	(pub,prv) = rsa.newkeys(2048)
 	dfpub = pub.save_pkcs1(format="PEM")
 	dfprv = prv.save_pkcs1(format="PEM")
-	with open('passwd/loginkey_pub.pem') as fpub:
+	if os.path.exists('passwd/loginkey_pub.pem'):
+		os.remove('passwd/loginkey_pub.pem')
+	if os.path.exists('passwd/loginkey_prv.pem'):
+		os.remove('passwd/loginkey_prv.pem')
+	with open('passwd/loginkey_pub.pem','w') as fpub:
 		fpub.write(dfpub)
-	with open('passwd/loginkey_prv.pem') as fprv:
+	with open('passwd/loginkey_prv.pem','w') as fprv:
 		fprv.write(dfprv)
 
 def dmInit():

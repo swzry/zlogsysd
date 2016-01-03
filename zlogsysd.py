@@ -70,6 +70,7 @@ class CGI_APP:
 		if request.method == "POST":
 			username = request.forms.get("username")
 			password = request.forms.get("password")
+			return repr(username)+repr(password)
 		else:
 			ref = request.headers.get("REFERER")
 			if ref == None or ref == "":
@@ -80,7 +81,7 @@ class CGI_APP:
 				"keyn":hex(RSAKEY['login_pub']['n'])[2:],
 				"keye":hex(RSAKEY['login_pub']['e'])[2:],
 			}
-			return  template("login.html",**kwvars)
+			return template("login.html",**kwvars)
 	@CheckLogin
 	def index(self,auth=None):
 		kwvars = {

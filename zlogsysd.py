@@ -78,7 +78,7 @@ class CGI_APP:
 			kwvars = {
 				"PageTitle":"管理登陆",
 				"ref":ref,
-				"keyn":hex(RSAKEY['login_pub']['n'])[2:],
+				"keyn":hex(RSAKEY['login_pub']['n'])[2:][:-1],
 				"keye":hex(RSAKEY['login_pub']['e'])[2:],
 			}
 			return template("login.html",**kwvars)

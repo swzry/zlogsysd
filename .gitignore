@@ -61,3 +61,5 @@ target/
 # Config Files
 config.json
 dbsettings.py
+
+passwd/*.pem

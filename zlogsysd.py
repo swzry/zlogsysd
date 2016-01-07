@@ -28,6 +28,7 @@ def RouteTable(app):
 	getDict = {
 	}
 	postDict = {
+		'/login/': cgiapp.login_backend,
 	}
 ##=======================================
 	for url in routeDict:
@@ -67,21 +68,20 @@ class CGI_APP:
 	def static(self,filename):
 		return static_file(filename, root='static')
 	def login(self):
-		if request.method == "POST":
-			username = request.forms.get("username")
-			password = request.forms.get("password")
-			return repr(username)+repr(password)
-		else:
-			ref = request.headers.get("REFERER")
-			if ref == None or ref == "":
-				ref = "/"
-			kwvars = {
-				"PageTitle":"管理登陆",
-				"ref":ref,
-				"keyn":hex(RSAKEY['login_pub']['n'])[2:][:-1],
-				"keye":hex(RSAKEY['login_pub']['e'])[2:],
-			}
-			return template("login.html",**kwvars)
+		ref = request.headers.get("REFERER")
+		if ref == None or ref == "":
+			ref = "/"
+		kwvars = {
+			"PageTitle":"管理登陆",
+			"ref":ref,
+			"keyn":hex(RSAKEY['login_pub']['n'])[2:][:-1],
+			"keye":hex(RSAKEY['login_pub']['e'])[2:],
+		}
+		return template("login.html",**kwvars)
+	def login_backend(self):
+		username = request.forms.get("username")
+		password = request.forms.get("password")
+		return repr(username)+repr(password)
 	@CheckLogin
 	def index(self,auth=None):
 		kwvars = {

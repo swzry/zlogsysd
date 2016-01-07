@@ -66,6 +66,8 @@ def CheckLogin(func):
 				if not rtk == token:
 					raise AuthStatus.NotLoggedIn
 			except:
+				sys.stderr.write(traceback.format_exc())
+				sys.stderr.flush()
 				raise AuthStatus.NotLoggedIn
 			authobj = AuthObj()
 			kwargs ["auth"] = authobj

@@ -36,8 +36,8 @@
       <file leaf-file-name="zlogsysd.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/zlogsysd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.78649235">
-              <caret line="216" column="0" selection-start-line="215" selection-start-column="45" selection-end-line="216" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.6830065">
+              <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
               <folding>
                 <element signature="e#24#52#0" expanded="true" />
               </folding>
@@ -1121,8 +1121,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/zlogsysd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.78649235">
-          <caret line="216" column="0" selection-start-line="215" selection-start-column="45" selection-end-line="216" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.6830065">
+          <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
           <folding>
             <element signature="e#24#52#0" expanded="true" />
           </folding>

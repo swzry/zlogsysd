@@ -79,8 +79,10 @@ class CGI_APP:
 		}
 		return template("login.html",**kwvars)
 	def login_backend(self):
-		username = request.forms.get("username")
-		password = request.forms.get("password")
+		user_c = request.forms.get("username")
+		pswd_c = request.forms.get("password")
+		username = rsa.decrypt(user_c.decode('base64'),RSAKEY['login_prv'])
+		password = rsa.decrypt(pswd_c.decode('base64'),RSAKEY['login_prv'])
 		return repr(username)+repr(password)
 	@CheckLogin
 	def index(self,auth=None):

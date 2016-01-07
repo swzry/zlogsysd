@@ -210,6 +210,10 @@ def LoadRSAKeys():
 		RSAKEY['login_pub'] = rsa.PublicKey.load_pkcs1(fpub.read(),'PEM')
 	with open('passwd/loginkey_prv.pem') as fpub:
 		RSAKEY['login_prv'] = rsa.PrivateKey.load_pkcs1(fpub.read(),'PEM')
+	with open('passwd/passwd.json') as jsf:
+		passwd = json.load(jsf)
+		RSAKEY['passwd_store'] = passwd['password_store_key']
+		RSAKEY['ulist'] = passwd['user_list']
 
 def RebuildKeys():
 	(pub,prv) = rsa.newkeys(2048)

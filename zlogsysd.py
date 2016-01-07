@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 from daemonlib import Daemon
-from bottle import Bottle,route,run,get,post,request,HTTPError,static_file,request,error,template,redirect
-import os,sys,time,traceback,datetime,threading,json,logging,rsa
+from bottle import Bottle,route,run,get,post,response,HTTPError,static_file,request,error,template,redirect
+import os,sys,time,traceback,datetime,threading,json,logging,rsa,hmac,hashlib,uuid
 import dbsettings
 from dbmodels import  *
 now = lambda: time.strftime("[%Y-%b-%d %H:%M:%S]")
@@ -52,7 +52,19 @@ def CheckLogin(func):
 	def wrapper(*args,**kwargs):
 		try:
 			try:
-				cktoken = request.cookies.get('authtoken')
+				uhmac = request.cookies.get('uhmac')
+				token = request.cookies.get('token')
+				uname = request.cookies.get('uname')
+				hm = hmac.new(str(RSAKEY['passwd_store']),"UNHMAC_"+unref, hashlib.sha1)
+				uhmac2 = hm.digest().encode('base64').strip()
+				if not uhmac == uhmac2:
+					raise AuthStatus.NotLoggedIn
+				kn = redis_conf['prefix']+'#uSession'
+				rtk = redis.hget(kn,uhmac)
+				if rtk == None or rtk == "":
+					raise AuthStatus.NotLoggedIn
+				if not rtk == token:
+					raise AuthStatus.NotLoggedIn
 			except:
 				raise AuthStatus.NotLoggedIn
 			authobj = AuthObj()
@@ -71,19 +83,45 @@ class CGI_APP:
 		ref = request.headers.get("REFERER")
 		if ref == None or ref == "":
 			ref = "/"
+		errcode = request.query.get("errcode")
 		kwvars = {
 			"PageTitle":"管理登陆",
 			"ref":ref,
 			"keyn":hex(RSAKEY['login_pub']['n'])[2:][:-1],
 			"keye":hex(RSAKEY['login_pub']['e'])[2:],
+			"errcode":errcode,
 		}
 		return template("login.html",**kwvars)
 	def login_backend(self):
 		user_c = request.forms.get("username")
 		pswd_c = request.forms.get("password")
-		username = rsa.decrypt(user_c.decode('base64'),RSAKEY['login_prv'])
-		password = rsa.decrypt(pswd_c.decode('base64'),RSAKEY['login_prv'])
-		return repr(username)+repr(password)
+		try:
+			username = rsa.decrypt(user_c.decode('base64'),RSAKEY['login_prv'])
+		except:
+			return redirect("/login/?errcode=400",302)
+		if username in RSAKEY['ulist'].keys():
+			try:
+				password = rsa.decrypt(pswd_c.decode('base64'),RSAKEY['login_prv'])
+			except:
+				return redirect("/login/?errcode=400",302)
+			hm = hmac.new(str(RSAKEY['passwd_store']),password, hashlib.sha1)
+			sg = hm.digest()
+			pshs = sg.encode('base64').strip()
+			upd = RSAKEY['ulist'].get(username)
+			if pshs == upd:
+				suuid = uuid.uuid4().bytes.encode('base64').strip()
+				hm = hmac.new(str(RSAKEY['passwd_store']),"UNHMAC_"+username, hashlib.sha1)
+				uname = hm.digest().encode('base64').strip()
+				kn = redis_conf['prefix']+'#uSession'
+				redis.hset(kn,uname,suuid)
+				response.set_cookie("uname",username,path="/")
+				response.set_cookie("uhmac",uname,path="/")
+				response.set_cookie("token",suuid,path="/")
+				return redirect("/",302)
+			else:
+				return redirect("/login/?errcode=530",302)
+		else:
+			return redirect("/login/?errcode=530",302)
 	@CheckLogin
 	def index(self,auth=None):
 		kwvars = {

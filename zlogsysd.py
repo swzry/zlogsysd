@@ -55,7 +55,7 @@ def CheckLogin(func):
 				uhmac = request.cookies.get('uhmac')
 				token = request.cookies.get('token')
 				uname = request.cookies.get('uname')
-				hm = hmac.new(str(RSAKEY['passwd_store']),"UNHMAC_"+unref, hashlib.sha1)
+				hm = hmac.new(str(RSAKEY['passwd_store']),"UNHMAC_"+uname, hashlib.sha1)
 				uhmac2 = hm.digest().encode('base64').strip()
 				if not uhmac == uhmac2:
 					raise AuthStatus.NotLoggedIn
@@ -69,6 +69,7 @@ def CheckLogin(func):
 				SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',"<DEBUG>[LoginError]%s"%traceback.format_exc())
 				raise AuthStatus.NotLoggedIn
 			authobj = AuthObj()
+			authobj.username = uname
 			kwargs ["auth"] = authobj
 			result = func(*args,**kwargs)
 			return result

@@ -66,14 +66,14 @@ def CheckLogin(func):
 				if not rtk == token:
 					raise AuthStatus.NotLoggedIn
 			except:
-				sys.stderr.write(traceback.format_exc())
-				sys.stderr.flush()
+				SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',"<DEBUG>[LoginError]%s"%traceback.format_exc())
 				raise AuthStatus.NotLoggedIn
 			authobj = AuthObj()
 			kwargs ["auth"] = authobj
 			result = func(*args,**kwargs)
 			return result
 		except AuthStatus.NotLoggedIn:
+			SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',"<DEBUG>[LoginFailure]%s"%traceback.format_exc())
 			redirect("/login/",code=302)
 	return wrapper
 

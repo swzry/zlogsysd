@@ -23,6 +23,7 @@ def RouteTable(app):
 		'/static/<filename:path>':cgiapp.static,
 		'/': cgiapp.index,
 		'/login/': cgiapp.login,
+		'/logout/': cgiapp.logout,
 		'/about/': cgiapp.about,
 	}
 	getDict = {

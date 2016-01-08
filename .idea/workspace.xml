@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3618aabe-af20-475b-b62a-19125caa0ef8" name="Default" comment="~&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/sidebar.html" afterPath="$PROJECT_DIR$/views/sidebar.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zlogsysd.py" afterPath="$PROJECT_DIR$/zlogsysd.py" />
     </list>
     <ignored path="zlogsysd.iws" />
@@ -37,8 +36,8 @@
       <file leaf-file-name="zlogsysd.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/zlogsysd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5686937">
-              <caret line="104" column="43" selection-start-line="104" selection-start-column="43" selection-end-line="104" selection-end-column="43" />
+            <state vertical-scroll-proportion="0.4831081">
+              <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
               <folding>
                 <element signature="e#24#52#0" expanded="true" />
               </folding>
@@ -1122,8 +1121,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/zlogsysd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5686937">
-          <caret line="104" column="43" selection-start-line="104" selection-start-column="43" selection-end-line="104" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.4831081">
+          <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
           <folding>
             <element signature="e#24#52#0" expanded="true" />
           </folding>

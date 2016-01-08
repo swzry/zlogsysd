@@ -43,6 +43,7 @@ def RouteTable(app):
 
 class AuthObj(object):
 	username = None
+	uhmac = None
 
 class AuthStatus():
 	class NotLoggedIn(Exception):
@@ -70,12 +71,13 @@ def CheckLogin(func):
 				raise AuthStatus.NotLoggedIn
 			authobj = AuthObj()
 			authobj.username = uname
+			authobj.uhmac = uhmac
 			kwargs ["auth"] = authobj
 			result = func(*args,**kwargs)
 			return result
 		except AuthStatus.NotLoggedIn:
 			SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',"<DEBUG>[LoginFailure]%s"%traceback.format_exc())
-			redirect("/login/",code=302)
+			return redirect("/login/",code=302)
 	return wrapper
 
 class CGI_APP:
@@ -95,6 +97,13 @@ class CGI_APP:
 			"errcode":errcode,
 		}
 		return template("login.html",**kwvars)
+
+	@CheckLogin
+	def logout(self,auth=None):
+		kn = redis_conf['prefix']+'#uSession'
+		redis.hdel(kn,auth.hmac)
+		return redirect("/login/",code=302)
+
 	def login_backend(self):
 		user_c = request.forms.get("username")
 		pswd_c = request.forms.get("password")
@@ -125,6 +134,7 @@ class CGI_APP:
 				return redirect("/login/?errcode=530",302)
 		else:
 			return redirect("/login/?errcode=530",302)
+
 	@CheckLogin
 	def index(self,auth=None):
 		kwvars = {
@@ -134,7 +144,6 @@ class CGI_APP:
 		return template('home.html',**kwvars)
 	def about(self):
 		return currname+" (Now Building...)"
-
 
 ##============Error Pages Class============
 class ERR_PAGES:

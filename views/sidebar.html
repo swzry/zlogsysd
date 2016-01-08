@@ -3,12 +3,15 @@
         <div class="panel-heading" role="tab" id="sm_h_sysconf">
             <h4 class="panel-title">
                 <span role="button" onclick="rec_menupos(0)" data-toggle="collapse" data-parent="#sidebar_menu" href="#sm_b_sysconf" aria-expanded="true" aria-controls="sm_b_sysconf">
-                    <span class="glyphicon glyphicon-list-alt btn-xs"></span>
-                    系统设置
+                    <span class="glyphicon glyphicon-user btn-xs"></span>
+                    用户信息
                 </span>
             </h4>
         </div>
         <div id="sm_b_sysconf" class="panel-collapse collapse" role="tabpanel" aria-labelledby="sm_h_sysconf">
+            <div class="panel-body">
+                <p>用户名：{{auth.username}}</p>
+            </div>
             <table class="table">
                 <tbody>
                     <tr>
@@ -43,6 +46,7 @@
                     </tr>
                 </tbody>
             </table>
+
         </div>
     </div>
     <div class="panel panel-primary">

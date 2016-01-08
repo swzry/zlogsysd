@@ -102,7 +102,7 @@ class CGI_APP:
 	@CheckLogin
 	def logout(self,auth=None):
 		kn = redis_conf['prefix']+'#uSession'
-		redis.hdel(kn,auth.hmac)
+		redis.hdel(kn,auth.uhmac)
 		return redirect("/login/",code=302)
 
 	def login_backend(self):

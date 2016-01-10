@@ -11,6 +11,8 @@
         <div id="sm_b_sysconf" class="panel-collapse collapse" role="tabpanel" aria-labelledby="sm_h_sysconf">
             <div class="panel-body">
                 <p>用户名：{{auth.username}}</p>
+                <p>用户类型：管理员</p>
+                <p>（该版本暂无权限分级）</p>
             </div>
             <table class="table">
                 <tbody>
@@ -18,30 +20,6 @@
                         <td>
                             <span class="glyphicon glyphicon-list-alt btn-xs"></span>
                             <a href="/logout/">退出登陆</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-user btn-xs"></span>
-                            <a href={% url "listroleurl" %}>角色类型设置</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-lock btn-xs"></span>
-                            <a href={% url "listrolepermission" %}>角色权限设置</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-th btn-xs"></span>
-                            <a href={% url "listgroupurl" %}>角色分组设置</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-wrench btn-xs"></span>
-                            <a href={% url "addadminurl" %}>添加管理人员</a>
                         </td>
                     </tr>
                 </tbody>

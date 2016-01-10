@@ -143,6 +143,13 @@ class CGI_APP:
 			"auth":auth,
 		}
 		return template('home.html',**kwvars)
+
+	@CheckLogin
+	def AppList(self):
+		ao = LogApp.select()
+		
+
+
 	def about(self):
 		return currname+" (Now Building...)"
 

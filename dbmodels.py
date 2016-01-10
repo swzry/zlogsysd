@@ -12,21 +12,21 @@ class BaseModel(Model):
 		database = pwdb
 
 class LogApp(BaseModel):
-	name = CharField(max_length=128,unique=True)
+	name = CharField(max_length=128,unique=True,index=True)
 	desc = TextField()
 	appkey = CharField(max_length=128)
 	secret = CharField(max_length=128)
 
 class LogSrc(BaseModel):
-	name = CharField(max_length=128)
+	name = CharField(max_length=128,index=True)
 	app = ForeignKeyField(LogApp)
 
 class LogItem(BaseModel):
 	id = BigIntegerField(primary_key=True)
 	src = ForeignKeyField(LogSrc)
 	level = IntegerField()
-	time = DateTimeField()
-	type = CharField(max_length=32)
+	time = DateTimeField(index=True)
+	type = CharField(max_length=32,index=True)
 	content = TextField()
 
 def DB_Init():
@@ -55,6 +55,4 @@ class LoggerModel():
 			raise  Exceptions.LogSrcNotExist
 
 	def addlog(self,level,ctype,content):
-			LogItem.create(id=BigIntUniqueID(),src=self.logsrc,level=level,type=ctype,time=datetime.datetime.now(),content=content)
-
-# TODO: 数据库索引
+		LogItem.create(id=BigIntUniqueID(),src=self.logsrc,level=level,type=ctype,time=datetime.datetime.now(),content=content)

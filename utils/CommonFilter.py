@@ -7,4 +7,4 @@ class CommonFilter():
 	def AddFilter(self,name,fieldname,mode,**kwargs):
 		self.filterlist[name] = (fieldname,mode,kwargs)
 	def RenderHTML(self):
-		template('CommonFilter.html',{"fl":self.filterlist})
+		return template('CommonFilter.html',{"fl":self.filterlist})

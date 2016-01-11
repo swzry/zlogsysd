@@ -8,7 +8,7 @@
 	</div>
 	<div class="panel-body">
 		<form class="form-inline" action="" method="GET" onsubmit="return procFilterData();">
-			% for i in fl
+			% for i in fl:
 				% if i[1] == "eq" or i[1] == "gt" or i[1] == "gte" or i[1] == "lt" or i[1] == "lte":
 					<div class="form-group">
 						<label class="sr-only" for="fl_{{i[0]}}">{{i[2]['title']}}</label>
@@ -34,7 +34,7 @@
 						<label for="fl_{{i[0]}}">{{i.title}}</label>
 						<select class="form-control" id="fl_{{i[0]}}" name="{{i[0]}}">
 							<option value="all">全部</option>
-							% for j,jv in i[2].get('choices',{}).items()
+							% for j,jv in i[2].get('choices',{}).items():
 								<option value="{{j}}">{{jv}}</option>
 							% end
 						</select>
@@ -44,7 +44,7 @@
 						<label for="fl_{{i[0]}}">{{i.title}}</label>
 						<input type="hidden" id="smf_{{i[0]}}" class="cmcres" name="{{i[0]}}"/>
 						<select multiple class="form-control cmcbox" databind="{{i[0]}}" id="fl_{{i[0]}}">
-							% for j,jv in i[2].get('choices',{}).items()
+							% for j,jv in i[2].get('choices',{}).items():
 								<option value="{{j}}">{{jv}}</option>
 							% end
 						</select>

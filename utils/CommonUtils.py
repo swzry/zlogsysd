@@ -3,7 +3,7 @@ class PageCounter():
 	def __init__(self,dbo,ipp):
 		self.items_per_page = ipp
 		self.num_of_items = dbo.count()
-		self.remain = self.num_of_itemst % ipp
+		self.remain = self.num_of_items % ipp
 		pn = (ct - remain) / ipp
 		if self.remain > 0:
 			self.num_of_pages = pn + 1

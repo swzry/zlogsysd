@@ -1,4 +1,5 @@
 <!-- 分页功能 -->
+<div>
     第 {{ pco.current_page }} 页，共 {{ pco.num_of_pages }} 页，共 {{ pco.num_of_items }} 项。
     <ul class="pager pull-right" style="margin: -5px 0;">
         <li><a href="?{{ hqo.render_with_tempargs({'page':'1'}) }}">首页</a></li>
@@ -16,3 +17,4 @@
         % end
         <li><a href="?{{ hqo.render_with_tempargs({'page':pco.num_of_pages}) }}">尾页</a></li>
     </ul>
+</div>

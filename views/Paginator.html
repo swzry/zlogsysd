@@ -9,7 +9,7 @@
             <li class="disabled"><a onclick="javascript:return false;">上一页</a></li>
         % end
     
-        % if lPage.has_next:
+        % if pco.has_next:
             <li><a href="?{{ hqo.render_with_tempargs({'page':pco.next_page}) }}">下一页</a></li>
         % else:
             <li class="disabled"><a onclick="javascript:return false;">下一页</a></li>

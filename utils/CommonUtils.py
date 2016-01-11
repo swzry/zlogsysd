@@ -4,7 +4,7 @@ class PageCounter():
 		self.items_per_page = ipp
 		self.num_of_items = dbo.count()
 		self.remain = self.num_of_items % ipp
-		pn = (ct - remain) / ipp
+		pn = (self.num_of_items - self.remain) / ipp
 		if self.remain > 0:
 			self.num_of_pages = pn + 1
 		else:

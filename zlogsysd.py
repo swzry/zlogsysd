@@ -153,7 +153,7 @@ class CGI_APP:
 		return template('home.html',**kwvars)
 
 	@CheckLogin
-	def AppList(self):
+	def AppList(self,auth=None):
 		ao = LogApp.select()
 		try:
 			pgid = int(request.query.get('page','1'))

@@ -28,6 +28,7 @@ def RouteTable(app):
 		'/login/': cgiapp.login,
 		'/logout/': cgiapp.logout,
 		'/about/': cgiapp.about,
+		'/app/list/':cgiapp.AppList,
 	}
 	getDict = {
 	}

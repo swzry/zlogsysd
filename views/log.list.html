@@ -1,0 +1,31 @@
+% rebase('base.html',PageTitle=PageTitle)
+
+{{!fthtml}}
+
+% include('Paginator.html',pco=pco,hqo=hqo)
+<br />
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>名称</th>
+			<th>描述</th>
+			<th>APPKEY</th>
+			<th>SECRET</th>
+		</tr>
+	</thead>
+	<tbody>
+		% for i in lPage:
+			<tr>
+				<td>{{i.id}}</td>
+				<td>{{i.name}}</td>
+				<td>{{i.desc}}</td>
+				<td>{{i.appkey}}</td>
+				<td><button class="btn btn-xs btn-info" onclick="prompt('{{i.secret}}')">查看</button></td>
+			</tr>
+		% end
+	</tbody>
+</table>
+<br />
+% include('Paginator.html',pco=pco,hqo=hqo)
+	

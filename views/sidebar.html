@@ -45,25 +45,6 @@
                             <a href="/app/list/">应用管理</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-plus btn-xs"></span>
-                            <a href={% url "adduserurl" %}>个别人员添加</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-search btn-xs"></span>
-                            <a href={% url "listuserurl" %}>人员信息查询修改</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-eye-open btn-xs"></span>
-                            <a href={% url "listnewuserurl" %}>审核自助注册</a>
-                        </td>
-                    </tr>
-
                 </tbody>
             </table>
         </div>
@@ -72,8 +53,8 @@
         <div class="panel-heading" role="tab" id="sm_h_psyexam">
             <h4 class="panel-title">
                 <span role="button" onclick="rec_menupos(2)" data-toggle="collapse" data-parent="#sidebar_menu" href="#sm_b_psyexam" aria-expanded="true" aria-controls="sm_b_psyexam">
-                    <span class="glyphicon glyphicon-heart btn-xs"></span>
-                    心理测量管理
+                    <span class="glyphicon glyphicon-console btn-xs"></span>
+                    日志管理
                 </span>
             </h4>
         </div>
@@ -82,14 +63,8 @@
                 <tbody>
                     <tr>
                         <td>
-                            <span class="glyphicon glyphicon-book btn-xs"></span>
-                            <a href="{% url 'epg_elist' %}">量表平台管理</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-edit btn-xs"></span>
-                            <a href="{% url 'proj_plist' %}">测验方案管理</a>
+                            <span class="glyphicon glyphicon-list btn-xs"></span>
+                            <a href="/logs/list/">日志列表</a>
                         </td>
                     </tr>
                 </tbody>

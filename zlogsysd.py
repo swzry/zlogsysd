@@ -29,6 +29,7 @@ def RouteTable(app):
 		'/logout/': cgiapp.logout,
 		'/about/': cgiapp.about,
 		'/app/list/':cgiapp.AppList,
+		'/log/list/':cgiapp.LogList,
 	}
 	getDict = {
 	}
@@ -170,6 +171,36 @@ class CGI_APP:
 			"auth":auth,
 		}
 		return template('app.list.html',**kwvars)
+
+	@CheckLogin
+	def LogList(self,auth=None):
+		lo = LogItem.select()
+		fco = CommonFilter(LogItem)
+		tpch = {
+			"text/plain":"纯文本",
+			"text/html":"HTML",
+			"text/markdown":"Markdown",
+		}
+		fco.AddFilter("lv","level","lte",title="级别")
+		fco.AddFilter("st","time","gte",title="起始时间")
+		fco.AddFilter("et","time","lte",title="结束时间")
+		fco.AddFilter("tp","type","eq",title="数据类型",choice=tpch)
+		try:
+			pgid = int(request.query.get('page','1'))
+		except:
+			pgid = 0
+		pco = PageCounter(lo,20)
+		pco.setCurrentPage(pgid)
+		lpg = lo.order_by(-LogItem.time).paginate(pgid,20)
+		kwvars = {
+			"fthtml":fco.RenderHTML(),
+			"pco": pco,
+			"hqo": HTTPQueryArgs(request),
+			"lPage": lpg,
+			"PageTitle":"日志列表",
+			"auth":auth,
+		}
+		return template('log.list.html',**kwvars)
 
 
 

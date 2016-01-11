@@ -78,8 +78,12 @@ def CheckLogin(func):
 			authobj.username = uname
 			authobj.uhmac = uhmac
 			kwargs ["auth"] = authobj
-			result = func(*args,**kwargs)
-			return result
+			try:
+				result = func(*args,**kwargs)
+				return result
+			except:
+				SelfFailureLoggerModel.addlog(logging.ERROR,'text/plain',traceback.format_exc())
+				return error(500)
 		except AuthStatus.NotLoggedIn:
 			SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',"<DEBUG>[LoginFailure]%s"%traceback.format_exc())
 			return redirect("/login/",code=302)

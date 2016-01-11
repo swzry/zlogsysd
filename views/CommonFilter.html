@@ -1,0 +1,122 @@
+<div class="panel panel-warning">
+	<div class="panel-heading">
+		<h4 class="panel-title">
+			<span class="glyphicon glyphicon-filter btn-xs"></span>
+			查找/筛选/过滤
+			<small>(带*项目可模糊查询)</small>
+		</h4>
+	</div>
+	<div class="panel-body">
+		<form class="form-inline" action="" method="GET" onsubmit="return procFilterData();">
+			% for i in fl
+				% if i[1] == "eq" or i[1] == "gt" or i[1] == "gte" or i[1] == "lt" or i[1] == "lte":
+					<div class="form-group">
+						<label class="sr-only" for="fl_{{i[0]}}">{{i[2]['title']}}</label>
+						<input type="text" class="form-control" id="fl_{{i[0]}}" name="{{i[0]}}" placeholder="{{i[2]['title']}}" value="{{i[0].get('default','')}}" />
+					</div>
+				% elif i[1] == "sw":
+					<div class="form-group">
+						<label class="sr-only" for="fl_{{i[0]}}">{{i[2]['title']}}*</label>
+						<input type="text" class="form-control" id="fl_{{i[0]}}" name="{{i[0]}}" placeholder="{{i[2]['title']}}*" value="{{i[0].get('default','')}}" />
+					</div>
+				% elif i[1] == "ew":
+					<div class="form-group">
+						<label class="sr-only" for="fl_{{i[0]}}">*{{i[2]['title']}}</label>
+						<input type="text" class="form-control" id="fl_{{i[0]}}" name="{{i[0]}}" placeholder="*{{i[2]['title']}}" value="{{i[0].get('default','')}}" />
+					</div>
+				% elif i[1] == "ct":
+					<div class="form-group">
+						<label class="sr-only" for="fl_{{i[0]}}">*{{i[2]['title']}}*</label>
+						<input type="text" class="form-control" id="fl_{{i[0]}}" name="{{i[0]}}" placeholder="*{{i[2]['title']}}*" value="{{i[0].get('default','')}}" />
+					</div>
+				% elif i[1] == "sc":
+					<div class="form-group">
+						<label for="fl_{{i[0]}}">{{i.title}}</label>
+						<select class="form-control" id="fl_{{i[0]}}" name="{{i[0]}}">
+							<option value="all">全部</option>
+							% for j,jv in enumerate(i[2].get('choices',[]))
+								<option value="{{j}}">{{jv}}</option>
+							% end
+						</select>
+					</div>
+				% elif i[1] == "mc":
+					<div class="form-group">
+						<label for="fl_{{i[0]}}">{{i.title}}</label>
+						<input type="hidden" id="smf_{{i[0]}}" class="cmcres" name="{{i[0]}}"/>
+						<select multiple class="form-control cmcbox" databind="{{i[0]}}" id="fl_{{i[0]}}">
+							% for j,jv in enumerate(i[2].get('choices',[]))
+								<option value="{{j}}">{{jv}}</option>
+							% end
+						</select>
+					</div>
+				% end
+			% end
+			<button type="submit" class="btn btn-primary">
+				<span class="glyphicon glyphicon-ok btn-xs"></span>
+				提交
+			</button>
+		</form>
+		<script type="text/javascript">
+			function InitSC(){
+				% for i in fl:
+					% if i[1] == "sc":
+						$("#fl_{{i[0]}}").val("{{i[0].get('default','')}}");
+					% end
+				% end
+			}
+			function MCSet(ctid,sllt){
+				var ar=Array();
+				ar=sllt.split(',');
+				for (var i = ar.length - 1; i >= 0; i--) {
+					var ia = ar[i];
+					console.log("#"+ctid+" option[value="+ia+"]");
+					$("#fl_"+ctid+" option[value="+ia+"]").attr('selected',true);
+				};
+				$("#smf"+ctid).val("{{i.value}}");
+			}
+			function InitMC(){
+				% for i in fl:
+					% if i[1] == "sc":
+						MCSet("{{i[0]}}","{{i[0].get('default','')}}");
+					% end
+				% end
+			}
+			function procFilterData(){
+				$(".cmcbox").each(
+					function(){
+						var sla=Array();
+						var oid=$(this).attr('databind');
+						var sol=$("#fl_"+oid+' option:selected');
+						for (var i = sol.length - 1; i >= 0; i--) {
+							var iv=$(sol[i]);
+							sla.push(iv.val());
+						};
+						$("#smf_"+oid).val(sla.join(','));
+						//$(this).remove();
+					}
+				);
+				
+				$("select").each(
+					function(){
+						if(!$(this).val()){
+							$(this).remove();
+						}
+						if($(this).val()=="all"){
+							$(this).remove();
+						}
+					}
+				);
+				$("input").each(
+					function(){
+						if(!$(this).val()){
+							$(this).remove();
+						}
+					}
+				);
+				//return confirm('确认***吗？？');
+			}
+			InitSC();
+			InitMC();
+		</script>
+	</div>
+</div>

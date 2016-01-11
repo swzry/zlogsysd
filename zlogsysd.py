@@ -2,6 +2,9 @@
 from daemonlib import Daemon
 from bottle import Bottle,route,run,get,post,response,HTTPError,static_file,request,error,template,redirect
 import os,sys,time,traceback,datetime,threading,json,logging,rsa,hmac,hashlib,uuid
+from utils.CommonFilter import CommonFilter
+from utils.HTTPQueryArgs import HTTPQueryArgs
+from utils.CommonUtils import PageCounter
 import dbsettings
 from dbmodels import  *
 now = lambda: time.strftime("[%Y-%b-%d %H:%M:%S]")
@@ -147,7 +150,20 @@ class CGI_APP:
 	@CheckLogin
 	def AppList(self):
 		ao = LogApp.select()
-		
+		try:
+			pgid = int(request.query.get('page','1'))
+		except:
+			pgid = 0
+		pco = PageCounter(ao,20)
+		pco.setCurrentPage(pgid)
+		lpg = ao.order_by(LogApp.id).paginate(pgid,20)
+		kwvars = {
+			"pco": pco,
+			"hqo": HTTPQueryArgs(request),
+			"lPage": lpg,
+		}
+		return template('app.list.html',**kwvars)
+
 
 
 	def about(self):

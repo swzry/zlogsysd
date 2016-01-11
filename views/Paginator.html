@@ -1,0 +1,18 @@
+<!-- 分页功能 -->
+    第 {{ pco.current_page }} 页，共 {{ pco.num_of_pages }} 页，共 {{ pco.num_of_items }} 项。
+    <ul class="pager pull-right" style="margin: -5px 0;">
+        <li><a href="?{{ hqo.render_with_tempargs({'page':'1'}) }}">首页</a></li>
+    
+        % if pco.has_previous
+            <li><a href="?{{ hqo.render_with_tempargs({'page':pco.previous_page}) }}">上一页</a></li>
+        % else
+            <li class="disabled"><a onclick="javascript:return false;">上一页</a></li>
+        % end
+    
+        % if lPage.has_next
+            <li><a href="?{{ hqo.render_with_tempargs({'page':pco.next_page}) }}">下一页</a></li>
+        % else
+            <li class="disabled"><a onclick="javascript:return false;">下一页</a></li>
+        % end
+        <li><a href="?{{ hqo.render_with_tempargs({'page':pco.num_of_pages}) }}">尾页</a></li>
+    </ul>

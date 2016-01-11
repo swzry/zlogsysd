@@ -1,7 +1,24 @@
-import dbsettings
-from dbmodels import *
-from DataConvert import BigIntUniqueID
-import uuid,datetime
+# -*- coding: utf-8 -*-
+# import dbsettings
+# from dbmodels import *
+# from DataConvert import BigIntUniqueID
+# import uuid,datetime
+import sys
+sys.path.append("../")
+from utils.HTTPQueryArgs import HTTPQueryArgs
+
+class RequestObject():
+	query = {}
+
+req = RequestObject()
+req.query = {
+	"a":"aa",
+	"b":"bb",
+	"蛤":"蛤铪",
+}
+
+ho = HTTPQueryArgs(req)
+print ho.render()
 
 #DB_Init()
 
@@ -15,6 +32,7 @@ import uuid,datetime
 #
 # LogItem.create(id=BigIntUniqueID(),src=src1,level="INFO",time=datetime.datetime.now(),content=repr(uuid.uuid4()))
 
-result = LogItem.select().where(LogItem.type=="text/plain").where(LogItem.level==20)
-for i in result:
-	print i.content
+# result = LogItem.select().where(LogItem.time>"2016-01-10 19:40:00")
+# for i in result:
+# 	print i.content
+

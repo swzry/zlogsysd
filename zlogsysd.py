@@ -166,6 +166,8 @@ class CGI_APP:
 			"pco": pco,
 			"hqo": HTTPQueryArgs(request),
 			"lPage": lpg,
+			"PageTitle":"应用管理",
+			"auth":auth,
 		}
 		return template('app.list.html',**kwvars)
 

@@ -69,7 +69,7 @@
 						</div>
 					% else:
 						<div class="form-group">
-							<label for="fl_{{k}}">{{i.title}}</label>
+							<label for="fl_{{k}}">{{v[2]['title']}}</label>
 							<select class="form-control" id="fl_{{k}}" name="{{k}}">
 								<option value="all">全部</option>
 								% for j,jv in v[2].get('choices',{}).items():
@@ -80,7 +80,7 @@
 					% end
 				% elif v[1] == "mc":
 					<div class="form-group">
-						<label for="fl_{{k}}">{{i.title}}</label>
+						<label for="fl_{{k}}">{{v[2]['title']}}</label>
 						<input type="hidden" id="smf_{{v[0]}}" class="cmcres" name="{{k}}"/>
 						<select multiple class="form-control cmcbox" databind="{{v[0]}}" id="fl_{{k}}">
 							% for j,jv in v[2].get('choices',{}).items():

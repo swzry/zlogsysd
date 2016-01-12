@@ -187,6 +187,7 @@ class CGI_APP:
 		fco.AddFilter("st","time","gte",title="起始时间",datecontrol=True)
 		fco.AddFilter("et","time","lte",title="结束时间",datecontrol=True)
 		fco.AddFilter("tp","type","eq",title="数据类型",choice=tpch)
+		lo = fco.Filter(request,lo)
 		try:
 			pgid = int(request.query.get('page','1'))
 		except:

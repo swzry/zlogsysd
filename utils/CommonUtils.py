@@ -35,3 +35,9 @@ class PageCounter():
 			else:
 				self.next_page = 1
 				self.has_next = False
+
+def MakeSummary(text,limit):
+	ut = text.decode('utf-8')
+	if len(ut) > limit:
+		ut = ut[:(limit-3)] + "..."
+	return ut

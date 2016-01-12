@@ -4,7 +4,7 @@ from bottle import Bottle,route,run,get,post,response,HTTPError,static_file,requ
 import os,sys,time,traceback,datetime,threading,json,logging,rsa,hmac,hashlib,uuid
 from utils.CommonFilter import CommonFilter
 from utils.HTTPQueryArgs import HTTPQueryArgs
-from utils.CommonUtils import PageCounter
+from utils.CommonUtils import PageCounter,MakeSummary
 import dbsettings
 from dbmodels import  *
 now = lambda: time.strftime("[%Y-%b-%d %H:%M:%S]")
@@ -211,6 +211,7 @@ class CGI_APP:
 			"lPage": lpg,
 			"PageTitle":"日志列表",
 			"auth":auth,
+			"MakeSummary":MakeSummary,
 		}
 		return template('log.list.html',**kwvars)
 

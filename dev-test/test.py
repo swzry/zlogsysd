@@ -5,20 +5,25 @@
 # import uuid,datetime
 import sys
 sys.path.append("../")
-from utils.HTTPQueryArgs import HTTPQueryArgs
 
-class RequestObject():
-	query = {}
+from utils.CommonUtils import MakeSummary
 
-req = RequestObject()
-req.query = {
-	"a":"aa",
-	"b":"bb",
-	"蛤":"蛤铪",
-}
+print MakeSummary("哈哈哈哈，哈哈哈，呵呵呵，嘻嘻嘻",10)
+print MakeSummary("哈哈哈哈hhh~~~",10)
 
-ho = HTTPQueryArgs(req)
-print ho.render()
+#from utils.HTTPQueryArgs import HTTPQueryArgs
+# class RequestObject():
+# 	query = {}
+#
+# req = RequestObject()
+# req.query = {
+# 	"a":"aa",
+# 	"b":"bb",
+# 	"蛤":"蛤铪",
+# }
+#
+# ho = HTTPQueryArgs(req)
+# print ho.render()
 
 #DB_Init()
 

@@ -1,4 +1,5 @@
 from bottle import template
+import copy
 
 def NoneFunction(*args,**kwargs):
 	pass
@@ -12,8 +13,14 @@ class CommonFilter():
 	def AddFilter(self,name,fieldname,mode,**kwargs):
 		self.filterdict[name] = (fieldname,mode,kwargs)
 		self.filterlist.append((name,(fieldname,mode,kwargs)))
-	def RenderHTML(self):
-		return template('CommonFilter.html',{"fl":self.filterlist,"logger":self.logger})
+	def RenderHTML(self,request):
+		ql = dict(requset.query)
+		fl = copy.deepcopy(self.filterlist)
+		for i in fl:
+			if i[0] in ql.keys():
+				i[1][2]['default'] = ql[i[0]]
+		kwargs = {"fl":fl,"logger":self.logger}
+		return template('CommonFilter.html',kwargs)
 	def Filter(self,requset,dbo):
 		ql = dict(requset.query)
 		dbobj = dbo
@@ -41,4 +48,4 @@ class CommonFilter():
 				if d[1] == "mc":
 					vlst = v.split(',')
 					dbobj = dbobj.where(getattr(self.modelclass,d[0])<<vlst)
-		return  dbobj
+		return dbobj

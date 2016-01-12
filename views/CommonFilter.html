@@ -10,29 +10,35 @@
 		<form class="form-inline" action="" method="GET" onsubmit="return procFilterData();">
 			% for k,v in fl:
 				% if v[1] == "eq" or v[1] == "gt" or v[1] == "gte" or v[1] == "lt" or v[1] == "lte":
-					<div class="form-group">
-						<label class="sr-only" for="fl_{{k}}">{{v[2]['title']}}</label>
-						<input type="text" class="form-control" id="fl_{{k}}" name="{{v[0]}}" placeholder="{{v[2]['title']}}" value="{{v[2].get('default','')}}" />
-					</div>
+					% if v[2].get('datecontrol',False):
+						<div class="input-append date" id="datetimepicker_{{k}}" data-date="{{v[2].get('default','')}}" data-date-format="yyyy-mm-dd hh:ii">
+							<input class="span2" size="16" name="{{k}}" placeholder="{{v[2]['title']}}" type="text" value="{{v[2].get('default','')}}">
+							<span class="add-on"><i class="icon-th"></i></span>
+						</div>
+					% else:
+						<div class="form-group">
+							<label class="sr-only" for="fl_{{k}}">{{v[2]['title']}}</label>
+							<input type="text" class="form-control" id="fl_{{k}}" name="{{k}}" placeholder="{{v[2]['title']}}" value="{{v[2].get('default','')}}" />
+						</div>
 				% elif v[1] == "sw":
 					<div class="form-group">
 						<label class="sr-only" for="fl_{{k}}">{{v[2]['title']}}*</label>
-						<input type="text" class="form-control" id="fl_{{k}}" name="{{v[0]}}" placeholder="{{v[2]['title']}}*" value="{{v[2].get('default','')}}" />
+						<input type="text" class="form-control" id="fl_{{k}}" name="{{k}}" placeholder="{{v[2]['title']}}*" value="{{v[2].get('default','')}}" />
 					</div>
 				% elif v[1] == "ew":
 					<div class="form-group">
 						<label class="sr-only" for="fl_{{k}}">*{{v[2]['title']}}</label>
-						<input type="text" class="form-control" id="fl_{{k}}" name="{{v[0]}}" placeholder="*{{v[2]['title']}}" value="{{v[2].get('default','')}}" />
+						<input type="text" class="form-control" id="fl_{{k}}" name="{{k}}" placeholder="*{{v[2]['title']}}" value="{{v[2].get('default','')}}" />
 					</div>
 				% elif v[1] == "ct":
 					<div class="form-group">
 						<label class="sr-only" for="fl_{{k}}">*{{v[2]['title']}}*</label>
-						<input type="text" class="form-control" id="fl_{{k}}" name="{{v[0]}}" placeholder="*{{v[2]['title']}}*" value="{{v[2].get('default','')}}" />
+						<input type="text" class="form-control" id="fl_{{k}}" name="{{k}}" placeholder="*{{v[2]['title']}}*" value="{{v[2].get('default','')}}" />
 					</div>
 				% elif v[1] == "sc":
 					<div class="form-group">
 						<label for="fl_{{k}}">{{i.title}}</label>
-						<select class="form-control" id="fl_{{k}}" name="{{v[0]}}">
+						<select class="form-control" id="fl_{{k}}" name="{{k}}">
 							<option value="all">全部</option>
 							% for j,jv in v[2].get('choices',{}).items():
 								<option value="{{j}}">{{jv}}</option>
@@ -42,7 +48,7 @@
 				% elif v[1] == "mc":
 					<div class="form-group">
 						<label for="fl_{{k}}">{{i.title}}</label>
-						<input type="hidden" id="smf_{{v[0]}}" class="cmcres" name="{{v[0]}}"/>
+						<input type="hidden" id="smf_{{v[0]}}" class="cmcres" name="{{k}}"/>
 						<select multiple class="form-control cmcbox" databind="{{v[0]}}" id="fl_{{k}}">
 							% for j,jv in v[2].get('choices',{}).items():
 								<option value="{{j}}">{{jv}}</option>

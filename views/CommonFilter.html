@@ -20,6 +20,7 @@
 							<label class="sr-only" for="fl_{{k}}">{{v[2]['title']}}</label>
 							<input type="text" class="form-control" id="fl_{{k}}" name="{{k}}" placeholder="{{v[2]['title']}}" value="{{v[2].get('default','')}}" />
 						</div>
+					% end
 				% elif v[1] == "sw":
 					<div class="form-group">
 						<label class="sr-only" for="fl_{{k}}">{{v[2]['title']}}*</label>

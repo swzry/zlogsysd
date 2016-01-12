@@ -175,7 +175,7 @@ class CGI_APP:
 	@CheckLogin
 	def LogList(self,auth=None):
 		lo = LogItem.select()
-		fco = CommonFilter(LogItem)
+		fco = CommonFilter(LogItem,logger=SelfFailureLoggerModel.addlog)
 		tpch = {
 			"text/plain":"纯文本",
 			"text/html":"HTML",

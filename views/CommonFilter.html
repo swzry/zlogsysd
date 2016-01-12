@@ -9,6 +9,7 @@
 	<div class="panel-body">
 		<form class="form-inline" action="" method="GET" onsubmit="return procFilterData();">
 			% for i in fl:
+				% logger(20,'text/plain',i[0]+":"+i[1])
 				% if i[1] == "eq" or i[1] == "gt" or i[1] == "gte" or i[1] == "lt" or i[1] == "lte":
 					<div class="form-group">
 						<label class="sr-only" for="fl_{{i[0]}}">{{i[2]['title']}}</label>

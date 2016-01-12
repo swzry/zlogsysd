@@ -41,3 +41,4 @@ class CommonFilter():
 				if d[1] == "mc":
 					vlst = v.split(',')
 					dbobj = dbobj.where(getattr(self.modelclass,d[0])<<vlst)
+		return  dbobj

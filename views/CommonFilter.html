@@ -8,43 +8,43 @@
 	</div>
 	<div class="panel-body">
 		<form class="form-inline" action="" method="GET" onsubmit="return procFilterData();">
-			% for i in fl:
-				% logger(20,'text/plain',i[0]+":"+i[1])
-				% if i[1] == "eq" or i[1] == "gt" or i[1] == "gte" or i[1] == "lt" or i[1] == "lte":
+			% for k,v in fl.items():
+				% logger(20,'text/plain',k+":"+v[1])
+				% if v[1] == "eq" or v[1] == "gt" or v[1] == "gte" or v[1] == "lt" or v[1] == "lte":
 					<div class="form-group">
-						<label class="sr-only" for="fl_{{i[0]}}">{{i[2]['title']}}</label>
-						<input type="text" class="form-control" id="fl_{{i[0]}}" name="{{i[0]}}" placeholder="{{i[2]['title']}}" value="{{i[0].get('default','')}}" />
+						<label class="sr-only" for="fl_{{k}}">{{i[2]['title']}}</label>
+						<input type="text" class="form-control" id="fl_{{k}}" name="{{v[0]}}" placeholder="{{i[2]['title']}}" value="{{v[2].get('default','')}}" />
 					</div>
-				% elif i[1] == "sw":
+				% elif v[1] == "sw":
 					<div class="form-group">
-						<label class="sr-only" for="fl_{{i[0]}}">{{i[2]['title']}}*</label>
-						<input type="text" class="form-control" id="fl_{{i[0]}}" name="{{i[0]}}" placeholder="{{i[2]['title']}}*" value="{{i[0].get('default','')}}" />
+						<label class="sr-only" for="fl_{{k}}">{{i[2]['title']}}*</label>
+						<input type="text" class="form-control" id="fl_{{k}}" name="{{v[0]}}" placeholder="{{i[2]['title']}}*" value="{{v[2].get('default','')}}" />
 					</div>
-				% elif i[1] == "ew":
+				% elif v[1] == "ew":
 					<div class="form-group">
-						<label class="sr-only" for="fl_{{i[0]}}">*{{i[2]['title']}}</label>
-						<input type="text" class="form-control" id="fl_{{i[0]}}" name="{{i[0]}}" placeholder="*{{i[2]['title']}}" value="{{i[0].get('default','')}}" />
+						<label class="sr-only" for="fl_{{k}}">*{{i[2]['title']}}</label>
+						<input type="text" class="form-control" id="fl_{{k}}" name="{{v[0]}}" placeholder="*{{i[2]['title']}}" value="{{v[2].get('default','')}}" />
 					</div>
-				% elif i[1] == "ct":
+				% elif v[1] == "ct":
 					<div class="form-group">
-						<label class="sr-only" for="fl_{{i[0]}}">*{{i[2]['title']}}*</label>
-						<input type="text" class="form-control" id="fl_{{i[0]}}" name="{{i[0]}}" placeholder="*{{i[2]['title']}}*" value="{{i[0].get('default','')}}" />
+						<label class="sr-only" for="fl_{{k}}">*{{i[2]['title']}}*</label>
+						<input type="text" class="form-control" id="fl_{{k}}" name="{{v[0]}}" placeholder="*{{i[2]['title']}}*" value="{{v[2].get('default','')}}" />
 					</div>
-				% elif i[1] == "sc":
+				% elif v[1] == "sc":
 					<div class="form-group">
-						<label for="fl_{{i[0]}}">{{i.title}}</label>
-						<select class="form-control" id="fl_{{i[0]}}" name="{{i[0]}}">
+						<label for="fl_{{k}}">{{i.title}}</label>
+						<select class="form-control" id="fl_{{k}}" name="{{v[0]}}">
 							<option value="all">全部</option>
 							% for j,jv in i[2].get('choices',{}).items():
 								<option value="{{j}}">{{jv}}</option>
 							% end
 						</select>
 					</div>
-				% elif i[1] == "mc":
+				% elif v[1] == "mc":
 					<div class="form-group">
-						<label for="fl_{{i[0]}}">{{i.title}}</label>
-						<input type="hidden" id="smf_{{i[0]}}" class="cmcres" name="{{i[0]}}"/>
-						<select multiple class="form-control cmcbox" databind="{{i[0]}}" id="fl_{{i[0]}}">
+						<label for="fl_{{k}}">{{i.title}}</label>
+						<input type="hidden" id="smf_{{v[0]}}" class="cmcres" name="{{v[0]}}"/>
+						<select multiple class="form-control cmcbox" databind="{{v[0]}}" id="fl_{{k}}">
 							% for j,jv in i[2].get('choices',{}).items():
 								<option value="{{j}}">{{jv}}</option>
 							% end
@@ -60,8 +60,8 @@
 		<script type="text/javascript">
 			function InitSC(){
 				% for i in fl:
-					% if i[1] == "sc":
-						$("#fl_{{i[0]}}").val("{{i[0].get('default','')}}");
+					% if v[1] == "sc":
+						$("#fl_{{k}}").val("{{v[2].get('default','')}}");
 					% end
 				% end
 			}
@@ -77,8 +77,8 @@
 			}
 			function InitMC(){
 				% for i in fl:
-					% if i[1] == "sc":
-						MCSet("{{i[0]}}","{{i[0].get('default','')}}");
+					% if v[1] == "sc":
+						MCSet("{{v[0]}}","{{v[2].get('default','')}}");
 					% end
 				% end
 			}

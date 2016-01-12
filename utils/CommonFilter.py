@@ -14,15 +14,15 @@ class CommonFilter():
 		self.filterdict[name] = (fieldname,mode,kwargs)
 		self.filterlist.append((name,(fieldname,mode,kwargs)))
 	def RenderHTML(self,request):
-		ql = dict(requset.query)
+		ql = dict(request.query)
 		fl = copy.deepcopy(self.filterlist)
 		for i in fl:
 			if i[0] in ql.keys():
 				i[1][2]['default'] = ql[i[0]]
 		kwargs = {"fl":fl,"logger":self.logger}
 		return template('CommonFilter.html',kwargs)
-	def Filter(self,requset,dbo):
-		ql = dict(requset.query)
+	def Filter(self,request,dbo):
+		ql = dict(request.query)
 		dbobj = dbo
 		for k,v in ql.items():
 			if k in self.filterdict.keys():

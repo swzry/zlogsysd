@@ -194,10 +194,12 @@ class CGI_APP:
 		pco = PageCounter(lo,20)
 		pco.setCurrentPage(pgid)
 		lpg = lo.order_by(-LogItem.time).paginate(pgid,20)
+		hqo = HTTPQueryArgs(request)
+		SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',hqo.args)
 		kwvars = {
 			"fthtml":fco.RenderHTML(),
 			"pco": pco,
-			"hqo": HTTPQueryArgs(request),
+			"hqo": hqo,
 			"lPage": lpg,
 			"PageTitle":"日志列表",
 			"auth":auth,

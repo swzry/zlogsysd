@@ -163,9 +163,11 @@ class CGI_APP:
 		pco = PageCounter(ao,20)
 		pco.setCurrentPage(pgid)
 		lpg = ao.order_by(LogApp.id).paginate(pgid,20)
+		hqo = HTTPQueryArgs(request)
+		SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',hqo.args)
 		kwvars = {
 			"pco": pco,
-			"hqo": HTTPQueryArgs(request),
+			"hqo": hqo,
 			"lPage": lpg,
 			"PageTitle":"应用管理",
 			"auth":auth,

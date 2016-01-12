@@ -55,4 +55,8 @@ class LoggerModel():
 			raise  Exceptions.LogSrcNotExist
 
 	def addlog(self,level,ctype,content):
-		LogItem.create(id=BigIntUniqueID(),src=self.logsrc,level=level,type=ctype,time=datetime.datetime.now(),content=content)
+		if isinstance(content,str):
+			cte = content
+		else:
+			cte = repr(content)
+		LogItem.create(id=BigIntUniqueID(),src=self.logsrc,level=level,type=ctype,time=datetime.datetime.now(),content=cte)

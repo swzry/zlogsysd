@@ -11,7 +11,7 @@
 			% for k,v in fl:
 				% if v[1] == "eq" or v[1] == "gt" or v[1] == "gte" or v[1] == "lt" or v[1] == "lte":
 					% if v[2].get('datecontrol',False):
-						<label for="fl_{{k}}">{{v[2]['title']}}</label>
+						<label class="input-group-addon" for="fl_{{k}}">{{v[2]['title']}}</label>
 						<div class="input-group date form_date" todayBtn="true" todayHighlight="true" id="datetimepicker_{{k}}" data-date="{{v[2].get('default','')}}" data-date-format="yyyy-mm-dd hh:ii">
 							<input class="span2 form-control" size="16" name="{{k}}" placeholder="{{v[2]['title']}}" type="text" value="{{v[2].get('default','')}}">
 							<span class="input-group-addon">

@@ -8,7 +8,7 @@
 	</div>
 	<div class="panel-body">
 		<form class="form-inline" action="" method="GET" onsubmit="return procFilterData();">
-			% for k,v in fl():
+			% for k,v in fl:
 				% logger(20,'text/plain',k+":"+v[1])
 				% if v[1] == "eq" or v[1] == "gt" or v[1] == "gte" or v[1] == "lt" or v[1] == "lte":
 					<div class="form-group">

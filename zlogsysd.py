@@ -183,10 +183,17 @@ class CGI_APP:
 			"text/html":"HTML",
 			"text/markdown":"Markdown",
 		}
-		fco.AddFilter("lv","level","lte",title="级别")
+		lvch = {
+			"CRITICAL":logging.CRITICAL,
+			"ERROR":logging.ERROR,
+			"WARNING":logging.WARNING,
+			"INFO":logging.INFO,
+			"DEBUG":logging.DEBUG,
+		}
+		fco.AddFilter("lv","level","lte",title="级别",choice=lvch)
 		fco.AddFilter("st","time","gte",title="起始时间",datecontrol=True)
 		fco.AddFilter("et","time","lte",title="结束时间",datecontrol=True)
-		fco.AddFilter("tp","type","eq",title="数据类型",choice=tpch)
+		fco.AddFilter("tp","type","sc",title="数据类型",choice=tpch)
 		lo = fco.Filter(request,lo)
 		try:
 			pgid = int(request.query.get('page','1'))

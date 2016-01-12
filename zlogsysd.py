@@ -184,11 +184,11 @@ class CGI_APP:
 			"text/markdown":"Markdown",
 		}
 		lvch = {
-			"CRITICAL":logging.CRITICAL,
-			"ERROR":logging.ERROR,
-			"WARNING":logging.WARNING,
-			"INFO":logging.INFO,
-			"DEBUG":logging.DEBUG,
+			logging.CRITICAL:"CRITICAL",
+			logging.ERROR:"ERROR",
+			logging.WARNING:"WARNING",
+			logging.INFO:"INFO",
+			logging.DEBUG:"DEBUG",
 		}
 		fco.AddFilter("lv","level","lte",title="级别",choices=lvch)
 		fco.AddFilter("st","time","gte",title="起始时间",datecontrol=True)

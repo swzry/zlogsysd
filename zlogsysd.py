@@ -198,7 +198,7 @@ class CGI_APP:
 		hqo = HTTPQueryArgs(request)
 		SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',hqo.render_with_tempargs({"page":2}))
 		kwvars = {
-			"fthtml":fco.RenderHTML(),
+			"fthtml":fco.RenderHTML(request),
 			"pco": pco,
 			"hqo": hqo,
 			"lPage": lpg,

@@ -195,7 +195,7 @@ class CGI_APP:
 		pco.setCurrentPage(pgid)
 		lpg = lo.order_by(-LogItem.time).paginate(pgid,20)
 		hqo = HTTPQueryArgs(request)
-		SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',hqo.args)
+		SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',hqo.render_with_tempargs({"page":2}))
 		kwvars = {
 			"fthtml":fco.RenderHTML(),
 			"pco": pco,

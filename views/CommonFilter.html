@@ -99,10 +99,7 @@
 			function InitSC(){
 				% for k,v in fl:
 					% if v[1] == "sc":
-						% if v[2].get('editable',False):
-						% else:
-							$("#fl_{{k}}").val("{{v[2].get('default','')}}");
-						% end
+						$("#fl_{{k}}").val("{{v[2].get('default','')}}");
 					% end
 				% end
 			}

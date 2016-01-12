@@ -11,4 +11,4 @@ class HTTPQueryArgs():
 	def render_with_tempargs(self,tempagrs):
 		tpdict = self.args
 		tpdict.update(tempagrs)
-		return urlencode(tempagrs)
+		return urlencode(tpdict)

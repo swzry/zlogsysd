@@ -21,7 +21,7 @@
 						<script type="text/javascript">$('#datetimepicker_{{k}}').datetimepicker();</script>
 					% elif v[2].get('choices',False):
 						<div class="input-group">
-							<label for="fl_{{k}}">{{v[2]['title']}}</label>
+							<label class="input-group-addon" for="fl_{{k}}">{{v[2]['title']}}</label>
 							<input type="text" class="form-control" id="fl_{{k}}" name="{{k}}" placeholder="{{v[2]['title']}}" value="{{v[2].get('default','')}}" />
 							<div class="input-group-btn">
 								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -36,29 +36,29 @@
 						</div>
 					% else:
 						<div class="form-group">
-							<label for="fl_{{k}}">{{v[2]['title']}}</label>
+							<label class="input-group-addon" for="fl_{{k}}">{{v[2]['title']}}</label>
 							<input type="text" class="form-control" id="fl_{{k}}" name="{{k}}" placeholder="{{v[2]['title']}}" value="{{v[2].get('default','')}}" />
 						</div>
 					% end
 				% elif v[1] == "sw":
 					<div class="form-group">
-						<label for="fl_{{k}}">{{v[2]['title']}}*</label>
+						<label class="input-group-addon" for="fl_{{k}}">{{v[2]['title']}}*</label>
 						<input type="text" class="form-control" id="fl_{{k}}" name="{{k}}" placeholder="{{v[2]['title']}}*" value="{{v[2].get('default','')}}" />
 					</div>
 				% elif v[1] == "ew":
 					<div class="form-group">
-						<label for="fl_{{k}}">*{{v[2]['title']}}</label>
+						<label class="input-group-addon" for="fl_{{k}}">*{{v[2]['title']}}</label>
 						<input type="text" class="form-control" id="fl_{{k}}" name="{{k}}" placeholder="*{{v[2]['title']}}" value="{{v[2].get('default','')}}" />
 					</div>
 				% elif v[1] == "ct":
 					<div class="form-group">
-						<label for="fl_{{k}}">*{{v[2]['title']}}*</label>
+						<label class="input-group-addon" for="fl_{{k}}">*{{v[2]['title']}}*</label>
 						<input type="text" class="form-control" id="fl_{{k}}" name="{{k}}" placeholder="*{{v[2]['title']}}*" value="{{v[2].get('default','')}}" />
 					</div>
 				% elif v[1] == "sc":
 					% if v[2].get('editable',False):
 						<div class="input-group">
-							<label for="fl_{{k}}">{{v[2]['title']}}</label>
+							<label class="input-group-addon" for="fl_{{k}}">{{v[2]['title']}}</label>
 							<input type="text" class="form-control" id="fl_{{k}}" name="{{k}}" placeholder="{{v[2]['title']}}" value="{{v[2].get('default','')}}" />
 							<div class="input-group-btn">
 								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

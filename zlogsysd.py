@@ -193,7 +193,7 @@ class CGI_APP:
 		fco.AddFilter("lv","level","lte",title="级别",choices=lvch)
 		fco.AddFilter("st","time","gte",title="起始时间",datecontrol=True)
 		fco.AddFilter("et","time","lte",title="结束时间",datecontrol=True)
-		fco.AddFilter("tp","type","sc",title="数据类型",choices=tpch)
+		fco.AddFilter("tp","type","sc",title="数据类型",choices=tpch,editable=True)
 		lo = fco.Filter(request,lo)
 		try:
 			pgid = int(request.query.get('page','1'))

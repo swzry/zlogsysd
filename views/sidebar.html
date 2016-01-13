@@ -1,14 +1,14 @@
 <div class="panel-group" id="sidebar_menu" role="tablist" aria-multiselectable="true">
     <div class="panel panel-primary">
-        <div class="panel-heading" role="tab" id="sm_h_sysconf">
+        <div class="panel-heading" role="tab" id="sm_h_authinfo">
             <h4 class="panel-title">
-                <span role="button" onclick="rec_menupos(0)" data-toggle="collapse" data-parent="#sidebar_menu" href="#sm_b_sysconf" aria-expanded="true" aria-controls="sm_b_sysconf">
+                <span role="button" onclick="rec_menupos(0)" data-toggle="collapse" data-parent="#sidebar_menu" href="#sm_b_authinfo" aria-expanded="true" aria-controls="sm_b_authinfo">
                     <span class="glyphicon glyphicon-user btn-xs"></span>
                     用户信息
                 </span>
             </h4>
         </div>
-        <div id="sm_b_sysconf" class="panel-collapse collapse" role="tabpanel" aria-labelledby="sm_h_sysconf">
+        <div id="sm_b_authinfo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="sm_h_authinfo">
             <div class="panel-body">
                 <p>用户名：{{auth.username}}</p>
                 <p>用户类型：管理员</p>
@@ -28,15 +28,15 @@
         </div>
     </div>
     <div class="panel panel-primary">
-        <div class="panel-heading" role="tab" id="sm_h_usermgr">
+        <div class="panel-heading" role="tab" id="sm_h_logsrc">
             <h4 class="panel-title">
-                <span role="button" onclick="rec_menupos(1)" data-toggle="collapse" data-parent="#sidebar_menu" href="#sm_b_usermgr" aria-expanded="true" aria-controls="sm_b_usermgr">
+                <span role="button" onclick="rec_menupos(1)" data-toggle="collapse" data-parent="#sidebar_menu" href="#sm_b_logsrc" aria-expanded="true" aria-controls="sm_b_logsrc">
                     <span class="glyphicon glyphicon-cloud btn-xs"></span>
                     日志源管理
                 </span>
             </h4>
         </div>
-        <div id="sm_b_usermgr" class="panel-collapse collapse" role="tabpanel" aria-labelledby="sm_h_usermgr">
+        <div id="sm_b_logsrc" class="panel-collapse collapse" role="tabpanel" aria-labelledby="sm_h_logsrc">
             <table class="table">
                 <tbody>
                     <tr>
@@ -50,15 +50,15 @@
         </div>
     </div>
     <div class="panel panel-primary">
-        <div class="panel-heading" role="tab" id="sm_h_psyexam">
+        <div class="panel-heading" role="tab" id="sm_h_logmgr">
             <h4 class="panel-title">
-                <span role="button" onclick="rec_menupos(2)" data-toggle="collapse" data-parent="#sidebar_menu" href="#sm_b_psyexam" aria-expanded="true" aria-controls="sm_b_psyexam">
+                <span role="button" onclick="rec_menupos(2)" data-toggle="collapse" data-parent="#sidebar_menu" href="#sm_b_logmgr" aria-expanded="true" aria-controls="sm_b_logmgr">
                     <span class="glyphicon glyphicon-console btn-xs"></span>
                     日志管理
                 </span>
             </h4>
         </div>
-        <div id="sm_b_psyexam" class="panel-collapse collapse" role="tabpanel" aria-labelledby="sm_h_psyexam">
+        <div id="sm_b_logmgr" class="panel-collapse collapse" role="tabpanel" aria-labelledby="sm_h_logmgr">
             <table class="table">
                 <tbody>
                     <tr>
@@ -72,15 +72,15 @@
         </div>
     </div>
     <div class="panel panel-primary">
-        <div class="panel-heading" role="tab" id="sm_h_examdoc">
+        <div class="panel-heading" role="tab" id="sm_h_repeater">
             <h4 class="panel-title">
-                <span role="button" onclick="rec_menupos(3)" data-toggle="collapse" data-parent="#sidebar_menu" href="#sm_b_examdoc" aria-expanded="true" aria-controls="sm_b_examdoc">
+                <span role="button" onclick="rec_menupos(3)" data-toggle="collapse" data-parent="#sidebar_menu" href="#sm_b_repeater" aria-expanded="true" aria-controls="sm_b_repeater">
                     <span class="glyphicon glyphicon-folder-open btn-xs"></span>
-                    测评档案管理
+                    转发器
                 </span>
             </h4>
         </div>
-        <div id="sm_b_examdoc" class="panel-collapse collapse" role="tabpanel" aria-labelledby="sm_h_examdoc">
+        <div id="sm_b_repeater" class="panel-collapse collapse" role="tabpanel" aria-labelledby="sm_h_repeater">
             <table class="table">
                 <tbody>
                     <tr>
@@ -112,15 +112,15 @@
         </div>
     </div>
     <div class="panel panel-primary">
-        <div class="panel-heading" role="tab" id="sm_h_customsvr">
+        <div class="panel-heading" role="tab" id="sm_h_crontab">
             <h4 class="panel-title">
-                <span role="button" onclick="rec_menupos(4)" data-toggle="collapse" data-parent="#sidebar_menu" href="#sm_b_customsvr" aria-expanded="true" aria-controls="sm_b_customsvr">
+                <span role="button" onclick="rec_menupos(4)" data-toggle="collapse" data-parent="#sidebar_menu" href="#sm_b_crontab" aria-expanded="true" aria-controls="sm_b_crontab">
                     <span class="glyphicon glyphicon-heart-empty btn-xs"></span>
-                    心理咨询管理
+                    任务计划
                 </span>
             </h4>
         </div>
-        <div id="sm_b_customsvr" class="panel-collapse collapse" role="tabpanel" aria-labelledby="sm_h_customsvr">
+        <div id="sm_b_crontab" class="panel-collapse collapse" role="tabpanel" aria-labelledby="sm_h_crontab">
             <table class="table">
                 <tbody>
                     <tr>
@@ -151,145 +151,16 @@
             </table>
         </div>
     </div>
-    <div class="panel panel-primary">
-        <div class="panel-heading" role="tab" id="sm_h_terrism">
-            <h4 class="panel-title">
-                <span role="button" onclick="rec_menupos(5)" data-toggle="collapse" data-parent="#sidebar_menu" href="#sm_b_terrism" aria-expanded="true" aria-controls="sm_b_terrism">
-                    <span class="glyphicon glyphicon-alert btn-xs"></span>
-                    危机干预管理
-                </span>
-            </h4>
-        </div>
-        <div id="sm_b_terrism" class="panel-collapse collapse" role="tabpanel" aria-labelledby="sm_h_terrism">
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-flash btn-xs"></span>
-                            <a href={% url "projdanger" %}>高危个体筛查</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-th-list btn-xs"></span>
-                            <a href="{% url 'dfadd' %}">预警方案设置</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-pencil btn-xs"></span>
-                            <a href="{% url 'dflist' %}">生成预警报表</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-pencil btn-xs"></span>
-                            <a href="{% url 'dfreportall' %}">预警总报表</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="panel panel-primary">
-        <div class="panel-heading" role="tab" id="sm_h_datamgr">
-            <h4 class="panel-title">
-                <span role="button" onclick="rec_menupos(6)" data-toggle="collapse" data-parent="#sidebar_menu" href="#sm_b_datamgr" aria-expanded="true" aria-controls="sm_b_datamgr">
-                    <span class="glyphicon glyphicon-hdd btn-xs"></span>
-                    测验数据管理
-                </span>
-            </h4>
-        </div>
-        <div id="sm_b_datamgr" class="panel-collapse collapse" role="tabpanel" aria-labelledby="sm_h_datamgr">
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-open btn-xs"></span>
-                            <a href={% url "dataqimport" %}>测评数据导入</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-pencil btn-xs"></span>
-                            <a href="{% url 'dataqinput' %}">数据手工录入</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-save btn-xs"></span>
-                            <a href={% url "dataload" %}>数据恢复</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class=" glyphicon glyphicon-floppy-disk btn-xs"></span>
-                            <a href="{% url 'databakv' %}">数据备份</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class=" glyphicon glyphicon-floppy-disk btn-xs"></span>
-                            <a href="{% url 'dfrecexport' %}">测评数据导出</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-        <div class="panel panel-primary">
-        <div class="panel-heading" role="tab" id="sm_h_report">
-            <h4 class="panel-title">
-                <span role="button" onclick="rec_menupos(7)" data-toggle="collapse" data-parent="#sidebar_menu" href="#sm_b_report" aria-expanded="true" aria-controls="sm_b_report">
-                    <span class=" glyphicon glyphicon-file btn-xs"></span>
-                    工作报表管理
-                </span>
-            </h4>
-        </div>
-        <div id="sm_b_report" class="panel-collapse collapse" role="tabpanel" aria-labelledby="sm_h_report">
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-list btn-xs"></span>
-                            <a href={% url "rss_rslist" %}>案例情况汇报表</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-calendar btn-xs"></span>
-                            <a href="{% url 'rss_mrslist' %}">管理月报表</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-blackboard btn-xs"></span>
-                            <a href="{% url 'rss_mrslist_ro' %}">查看月报表</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-eye-open btn-xs"></span>
-                            <a href={% url "rss_print" %}>浏览总结表</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
 </div>
 
 <script src="/static/js/jquery.cookie.js"></script>
 <script type="text/javascript">
     menuid_list=[
-        "#sm_b_sysconf",
-        "#sm_b_usermgr",
-        "#sm_b_psyexam",
-        "#sm_b_examdoc",
-        "#sm_b_customsvr",
-        "#sm_b_terrism",
-        "#sm_b_datamgr",
-        "#sm_b_report"
+        "#sm_b_authinfo",
+        "#sm_b_logsrc",
+        "#sm_b_logmgr",
+        "#sm_b_repeater",
+        "#sm_b_crontab"
     ];
     function LoadMenuPos(){
         for (var i = menuid_list.length - 1; i >= 0; i--) {

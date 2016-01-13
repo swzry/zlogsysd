@@ -23,7 +23,19 @@
 			<tr>
 				<td>{{i.src.name}}@{{i.src.app.name}}</td>
 				<td>{{i.time}}</td>
-				<td>{{i.level}}</td>
+				<td>
+					{{i.level}}&nbsp;
+					% if i.level == 50:
+						(CRITICAL)
+					% elif i.level == 40:
+						(ERROR)
+					% elif i.level == 30:
+						(WARNING)
+					% elif i.level == 20:
+						(INFO)
+					% elif i.level == 10:
+						(DEBUG)
+				</td>
 				<td>{{i.type}}</td>
 				<td><a type="button" target="_blank" href="/log/view/{{i.id}}/" class="btn btn-xs btn-info">查看</a>&nbsp;<span>{{MakeSummary(i.content,50)}}</span></td>
 			</tr>

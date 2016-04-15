@@ -286,10 +286,11 @@ def DoRedisQuene():
 			if not len(srcobjn) == 2:
 				raise Exception("Invalid SrcInfo in 'srclist'")
 			lkeyname = "%s$[%s](%s)" % (redis_conf['prefix'],srcobjn[0],srcobjn[1])
-			SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',"<DEBUG>---:%s"%repr(lkeyname))
+			#SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',"<DEBUG>---:%s"%repr(lkeyname))
 			iLoggerModel = LoggerModel(srcobjn[0],srcobjn[1])
 			while 1:
 				kd = redis.lpop(lkeyname)
+				SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',"<DEBUG>---:%s"%repr(kd))
 				if not kd:
 					break
 				try:

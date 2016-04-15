@@ -29,6 +29,7 @@ def RouteTable(app):
 		'/logout/': cgiapp.logout,
 		'/about/': cgiapp.about,
 		'/app/list/':cgiapp.AppList,
+		'/src/list/':cgiapp.SrcList,
 		'/log/list/':cgiapp.LogList,
 		'/log/view/<logid>/':cgiapp.LogView,
 	}

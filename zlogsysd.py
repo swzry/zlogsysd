@@ -290,7 +290,7 @@ def DoRedisQuene():
 			iLoggerModel = LoggerModel(srcobjn[0],srcobjn[1])
 			while 1:
 				kd = redis.lpop(lkeyname)
-				SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',"<DEBUG>---:%s"%repr(kd))
+				#SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',"<DEBUG>---:%s"%repr(kd))
 				if not kd:
 					break
 				try:

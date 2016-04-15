@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3618aabe-af20-475b-b62a-19125caa0ef8" name="Default" comment="~&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/CommonFilter.py" afterPath="$PROJECT_DIR$/utils/CommonFilter.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/sidebar.html" afterPath="$PROJECT_DIR$/views/sidebar.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zlogsysd.py" afterPath="$PROJECT_DIR$/zlogsysd.py" />
     </list>
     <ignored path="zlogsysd.iws" />
@@ -37,11 +38,21 @@
       <file leaf-file-name="zlogsysd.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/zlogsysd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2939189">
-              <caret line="32" column="44" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.7749577">
+              <caret line="194" column="45" selection-start-line="194" selection-start-column="45" selection-end-line="194" selection-end-column="45" />
               <folding>
                 <element signature="e#24#52#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sidebar.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/sidebar.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-11.535714">
+              <caret line="50" column="57" selection-start-line="50" selection-start-column="57" selection-end-line="50" selection-end-column="57" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -69,8 +80,8 @@
       <file leaf-file-name="CommonFilter.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/CommonFilter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+            <state vertical-scroll-proportion="3.220339">
+              <caret line="14" column="62" selection-start-line="14" selection-start-column="62" selection-end-line="14" selection-end-column="62" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -152,9 +163,10 @@
         <option value="$PROJECT_DIR$/dev-test/dbsettings.py" />
         <option value="$PROJECT_DIR$/dbmodels.py" />
         <option value="$PROJECT_DIR$/utils/HTTPQueryArgs.py" />
-        <option value="$PROJECT_DIR$/utils/CommonFilter.py" />
         <option value="$PROJECT_DIR$/dev-test/test.py" />
         <option value="$PROJECT_DIR$/utils/CommonUtils.py" />
+        <option value="$PROJECT_DIR$/views/sidebar.html" />
+        <option value="$PROJECT_DIR$/utils/CommonFilter.py" />
         <option value="$PROJECT_DIR$/zlogsysd.py" />
       </list>
     </option>
@@ -777,7 +789,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18229716" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.49789253" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32864866" sideWeight="0.50421494" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32900432" sideWeight="0.50421494" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.4947313" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -825,14 +837,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dbmodels.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="38" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/zlogsysd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1139,13 +1143,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zlogsysd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="85" column="6" selection-start-line="85" selection-start-column="6" selection-end-line="85" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dev-test/DjangoLogingHandler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.1111112">
@@ -1204,28 +1201,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dbmodels.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="31" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/CommonFilter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dev-test/test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zlogsysd">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.87309647">
+          <caret line="56" column="18" selection-start-line="56" selection-start-column="18" selection-end-line="56" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/sidebar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.535714">
+          <caret line="50" column="57" selection-start-line="50" selection-start-column="57" selection-end-line="50" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dbmodels.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="31" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -1238,10 +1241,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/utils/CommonFilter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.220339">
+          <caret line="14" column="62" selection-start-line="14" selection-start-column="62" selection-end-line="14" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/zlogsysd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2939189">
-          <caret line="32" column="44" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
+        <state vertical-scroll-proportion="0.7749577">
+          <caret line="194" column="45" selection-start-line="194" selection-start-column="45" selection-end-line="194" selection-end-column="45" />
           <folding>
             <element signature="e#24#52#0" expanded="true" />
           </folding>

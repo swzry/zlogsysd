@@ -176,6 +176,32 @@ class CGI_APP:
 		return template('app.list.html',**kwvars)
 
 	@CheckLogin
+	def SrcList(self,auth=None):
+		so = LogSrc.select()
+		fco = CommonFilter(LogSrc,logger=SelfFailureLoggerModel.addlog)
+		fco.AddFilter("an","app.name","eq",title="来源名")
+		fco.AddFilter("n","name","eq",title="应用名")
+		so = fco.Filter(request,so)
+		try:
+			pgid = int(request.query.get('page','1'))
+		except:
+			pgid = 0
+		pco = PageCounter(so,20)
+		pco.setCurrentPage(pgid)
+		lpg = so.order_by(LogApp.id).paginate(pgid,20)
+		hqo = HTTPQueryArgs(request)
+		SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',hqo.args)
+		kwvars = {
+			"fthtml":fco.RenderHTML(request),
+			"pco": pco,
+			"hqo": hqo,
+			"lPage": lpg,
+			"PageTitle":"应用管理",
+			"auth":auth,
+		}
+		return template('src.list.html',**kwvars)
+
+	@CheckLogin
 	def LogList(self,auth=None):
 		lo = LogItem.select()
 		fco = CommonFilter(LogItem,logger=SelfFailureLoggerModel.addlog)

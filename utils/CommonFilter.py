@@ -27,25 +27,32 @@ class CommonFilter():
 		for k,v in ql.items():
 			if k in self.filterdict.keys():
 				d = self.filterdict[k]
+				wobj = self.ProcWOBJ(d)
 				if d[1] == "eq":
-					dbobj = dbobj.where(getattr(self.modelclass,d[0])==v)
+					dbobj = dbobj.where(wobj==v)
 				if d[1] == "lt":
-					dbobj = dbobj.where(getattr(self.modelclass,d[0])<v)
+					dbobj = dbobj.where(wobj<v)
 				if d[1] == "gt":
-					dbobj = dbobj.where(getattr(self.modelclass,d[0])>v)
+					dbobj = dbobj.where(wobj>v)
 				if d[1] == "lte":
-					dbobj = dbobj.where(getattr(self.modelclass,d[0])<=v)
+					dbobj = dbobj.where(wobj<=v)
 				if d[1] == "gte":
-					dbobj = dbobj.where(getattr(self.modelclass,d[0])>=v)
+					dbobj = dbobj.where(wobj>=v)
 				if d[1] == "ct":
-					dbobj = dbobj.where(getattr(self.modelclass,d[0]).contains(v))
+					dbobj = dbobj.where(wobj.contains(v))
 				if d[1] == "sw":
-					dbobj = dbobj.where(getattr(self.modelclass,d[0]).startwith(v))
+					dbobj = dbobj.where(wobj.startwith(v))
 				if d[1] == "ew":
-					dbobj = dbobj.where(getattr(self.modelclass,d[0]).endwith(v))
+					dbobj = dbobj.where(wobj.endwith(v))
 				if d[1] == "sc":
-					dbobj = dbobj.where(getattr(self.modelclass,d[0])==v)
+					dbobj = dbobj.where(wobj==v)
 				if d[1] == "mc":
 					vlst = v.split(',')
-					dbobj = dbobj.where(getattr(self.modelclass,d[0])<<vlst)
+					dbobj = dbobj.where(wobj<<vlst)
 		return dbobj
+	def ProcWOBJ(self,d):
+		pgl = d[0].split('.')
+		outobj = self.modelclass
+		for i in pgl:
+			outobj = getattr(outobj,i)
+		return outobj

@@ -1,0 +1,27 @@
+% rebase('base.html',PageTitle=PageTitle)
+
+{{!fthtml}}
+
+% include('Paginator.html',pco=pco,hqo=hqo)
+<br />
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>名称</th>
+			<th>所属APP</th>
+		</tr>
+	</thead>
+	<tbody>
+		% for i in lPage:
+			<tr>
+				<td>{{i.id}}</td>
+				<td>{{i.name}}</td>
+				<td>{{i.app.name}}</td>
+			</tr>
+		% end
+	</tbody>
+</table>
+<br />
+% include('Paginator.html',pco=pco,hqo=hqo)
+	

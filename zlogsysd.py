@@ -30,6 +30,7 @@ def RouteTable(app):
 		'/about/': cgiapp.about,
 		'/app/list/':cgiapp.AppList,
 		'/log/list/':cgiapp.LogList,
+		'/log/view/<logid>/':cgiapp.LogView,
 	}
 	getDict = {
 	}
@@ -215,7 +216,15 @@ class CGI_APP:
 		}
 		return template('log.list.html',**kwvars)
 
-
+	@CheckLogin
+	def LogView(self,logid,auth=None):
+		lo = LogItem.get(LogItem.id == str2int(logid))
+		kwvars = {
+			"PageTitle":"查看日志条目内容",
+			"auth":auth,
+			"lo":lo,
+		}
+		return template('log.view.html',**kwvars)
 
 	def about(self):
 		return currname+" (Now Building...)"

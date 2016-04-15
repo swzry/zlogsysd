@@ -1,0 +1,60 @@
+% rebase('base.html',PageTitle=PageTitle)
+
+<br />
+<div class="zumdown" id="zumdown">
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			日志信息
+		</div>
+		<div class="panel-body">
+			<table class="table table-condensed table-bordered">
+				<tbody>
+					<tr>
+						<td>唯一ID</td>
+						<td>{{lo.id}}</td>
+					</tr>
+					<tr>
+						<td>来源</td>
+						<td>{{lo.src.name}}@{{lo.src.app.name}}</td>
+					</tr>
+					<tr>
+						<td>时间</td>
+						<td>{{lo.time}}</td>
+					</tr>
+					<tr>
+						<td>级别</td>
+						<td>
+							{{lo.level}}&nbsp;
+							% if lo.level == 50:
+								(CRITICAL)
+							% elif lo.level == 40:
+								(ERROR)
+							% elif lo.level == 30:
+								(WARNING)
+							% elif lo.level == 20:
+								(INFO)
+							% elif lo.level == 10:
+								(DEBUG)
+							% end
+						</td>
+					</tr>
+					<tr>
+						<td>类型</td>
+						<td>{{lo.type}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			日志内容
+		</div>
+		<div class="panel-body">
+			<div class="pygments-monokai" style="background: #272822">
+				<pre style="background:#272822;overflow:scroll;color:#f8f8f2;" line-height:="125%">{{!lo.content}}</pre>
+			</div>
+		</div>
+	</div>
+</div>
+	

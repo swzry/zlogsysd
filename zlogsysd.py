@@ -179,10 +179,10 @@ class CGI_APP:
 	@CheckLogin
 	def SrcList(self,auth=None):
 		so = LogSrc.select()
-		fco = CommonFilter(LogSrc,logger=SelfFailureLoggerModel.addlog)
-		fco.AddFilter("an","app.name","eq",title="来源名")
-		fco.AddFilter("n","name","eq",title="应用名")
-		so = fco.Filter(request,so)
+		#fco = CommonFilter(LogSrc,logger=SelfFailureLoggerModel.addlog)
+		#fco.AddFilter("an","app.name","eq",title="应用名")
+		#fco.AddFilter("n","name","eq",title="来源名")
+		#so = fco.Filter(request,so)
 		try:
 			pgid = int(request.query.get('page','1'))
 		except:
@@ -193,7 +193,8 @@ class CGI_APP:
 		hqo = HTTPQueryArgs(request)
 		SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',hqo.args)
 		kwvars = {
-			"fthtml":fco.RenderHTML(request),
+			#"fthtml":fco.RenderHTML(request),
+			"fthtml":"",
 			"pco": pco,
 			"hqo": hqo,
 			"lPage": lpg,

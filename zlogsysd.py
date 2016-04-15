@@ -218,7 +218,7 @@ class CGI_APP:
 			logging.INFO:"INFO",
 			logging.DEBUG:"DEBUG",
 		}
-		fco.AddFilter("lv","level","lte",title="级别",choices=lvch)
+		fco.AddFilter("lv","level","gte",title="级别",choices=lvch)
 		fco.AddFilter("st","time","gte",title="起始时间",datecontrol=True)
 		fco.AddFilter("et","time","lte",title="结束时间",datecontrol=True)
 		fco.AddFilter("tp","type","sc",title="数据类型",choices=tpch,editable=True)
@@ -231,7 +231,7 @@ class CGI_APP:
 		pco.setCurrentPage(pgid)
 		lpg = lo.order_by(-LogItem.time).paginate(pgid,20)
 		hqo = HTTPQueryArgs(request)
-		SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',hqo.render_with_tempargs({"page":2}))
+		#SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',hqo.render_with_tempargs({"page":2}))
 		kwvars = {
 			"fthtml":fco.RenderHTML(request),
 			"pco": pco,

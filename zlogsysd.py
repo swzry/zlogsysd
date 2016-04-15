@@ -277,7 +277,7 @@ def str2int(strs):
 
 def DoRedisQuene():
 	global SelfLoggerModel,SelfFailureLoggerModel
-	#SelfLoggerModel.addlog(logging.DEBUG,'text/plain','DoRedisQuene')
+	SelfLoggerModel.addlog(logging.DEBUG,'text/plain','DoRedisQuene')
 	lst = redis.lrange(redis_conf['prefix']+'#sys_srclist',0,-1)
 	#SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',"<DEBUG>%s"%repr(lst))
 	for i in lst:

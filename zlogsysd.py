@@ -322,11 +322,12 @@ class RunWorker(threading.Thread):
 		while 1:
 			try:
 				DoRedisQuene()
-				time.sleep(20)
 			except Exception,e:
 				s = traceback.format_exc()
 				sys.stderr.write("\n"+now()+"Application was shutdown by a fatal error.\n%s\n"%s)
 				sys.stderr.flush()
+			finally:
+				time.sleep(20)
 
 ##============Init============
 

@@ -1,3 +1,6 @@
+import re
+
+REGX_IDNAME = re.compile("^[0-9a-zA-Z_]+$")
 
 class PageCounter():
 	def __init__(self,dbo,ipp):
@@ -41,3 +44,6 @@ def MakeSummary(text,limit):
 	if len(ut) > limit:
 		ut = ut[:(limit-3)] + "..."
 	return ut
+
+def IDNameCheck(text):
+	return bool(REGX_IDNAME.match(text))

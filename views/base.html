@@ -48,6 +48,9 @@
                             % include('sidebar.html')
                         </div>
                         <div class="col-md-10">
+                            % for i in auth.msg:
+                                <div class="alert alert-{{i[0]}}" role="alert">{{i[1]}}</div>
+                            % end
                             {{!base}}
                         </div>
                     </div>

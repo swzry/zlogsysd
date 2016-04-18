@@ -4,7 +4,7 @@ from bottle import Bottle,route,run,get,post,response,HTTPError,static_file,requ
 import os,sys,time,traceback,datetime,threading,json,logging,rsa,hmac,hashlib,uuid
 from utils.CommonFilter import CommonFilter
 from utils.HTTPQueryArgs import HTTPQueryArgs
-from utils.CommonUtils import PageCounter,MakeSummary
+from utils.CommonUtils import PageCounter,MakeSummary,IDNameCheck
 import dbsettings
 from dbmodels import  *
 now = lambda: time.strftime("[%Y-%b-%d %H:%M:%S]")
@@ -52,6 +52,7 @@ def RouteTable(app):
 class AuthObj(object):
 	username = None
 	uhmac = None
+	msg = []
 
 class AuthStatus():
 	class NotLoggedIn(Exception):
@@ -69,17 +70,44 @@ def CheckLogin(func):
 				if not uhmac == uhmac2:
 					raise AuthStatus.NotLoggedIn
 				kn = redis_conf['prefix']+'#uSession'
+				kn2 = redis_conf['prefix']+"#uMsg:"+uhmac
 				rtk = redis.hget(kn,uhmac)
 				if rtk == None or rtk == "":
 					raise AuthStatus.NotLoggedIn
 				if not rtk == token:
 					raise AuthStatus.NotLoggedIn
 			except:
-				SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',"<DEBUG>[LoginError]%s"%traceback.format_exc())
+				SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',"<DEBUG>[LoginError]\n%s"%traceback.format_exc())
 				raise AuthStatus.NotLoggedIn
+			msgl = []
+			try:
+				while 1:
+					msg = redis.lpop(kn2)
+					if msg:
+						if msg[0] == "s":
+							mtype = "success"
+							content = msg[1:]
+						elif msg[0] == "i":
+							mtype = "info"
+							content = msg[1:]
+						elif msg[0] == "w":
+							mtype = "warning"
+							content = msg[1:]
+						elif msg[0] == "d":
+							mtype = "danger"
+							content = msg[1:]
+						else:
+							mtype = "info"
+							content = msg
+						msgl.append((mtype,content))
+					else:
+						break
+			except:
+				SelfFailureLoggerModel.addlog(logging.DEBUG,'text/plain',"<DEBUG>[MsgSysError]\n%s"%traceback.format_exc())
 			authobj = AuthObj()
 			authobj.username = uname
 			authobj.uhmac = uhmac
+			authobj.msg = msgl
 			kwargs ["auth"] = authobj
 			try:
 				result = func(*args,**kwargs)
@@ -137,7 +165,9 @@ class CGI_APP:
 				hm = hmac.new(str(RSAKEY['passwd_store']),"UNHMAC_"+username, hashlib.sha1)
 				uname = hm.digest().encode('base64').strip()
 				kn = redis_conf['prefix']+'#uSession'
+				kn2 = redis_conf['prefix']+"#uMsg:"+uname
 				redis.hset(kn,uname,suuid)
+				redis.lpush(kn2,"s登陆成功")
 				response.set_cookie("uname",username,path="/")
 				response.set_cookie("uhmac",uname,path="/")
 				response.set_cookie("token",suuid,path="/")
@@ -183,6 +213,13 @@ class CGI_APP:
 			"auth":auth,
 		}
 		return template('form.newapp.html',**kwvars)
+
+	@CheckLogin
+	def NewApp_backend(self,auth=None):
+		appname = request.forms.get("name")
+		desc = request.forms.get("desc")
+		if not IDNameCheck(appname):
+			redirect("/app/new/",code=302)
 
 	@CheckLogin
 	def SrcList(self,auth=None):

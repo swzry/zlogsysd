@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3618aabe-af20-475b-b62a-19125caa0ef8" name="Default" comment="~&#10;">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dbmodels.py" afterPath="$PROJECT_DIR$/dbmodels.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zlogsysd.py" afterPath="$PROJECT_DIR$/zlogsysd.py" />
     </list>
     <ignored path="zlogsysd.iws" />
@@ -27,7 +28,7 @@
         <entry file="file://$PROJECT_DIR$/dbmodels.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="33" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
+              <caret line="53" column="35" selection-start-line="53" selection-start-column="35" selection-end-line="53" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -36,8 +37,8 @@
       <file leaf-file-name="zlogsysd.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/zlogsysd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6216216">
-              <caret line="242" column="39" selection-start-line="242" selection-start-column="39" selection-end-line="242" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.42905405">
+              <caret line="236" column="40" selection-start-line="236" selection-start-column="40" selection-end-line="236" selection-end-column="40" />
               <folding>
                 <element signature="e#24#52#0" expanded="true" />
               </folding>
@@ -144,7 +145,6 @@
         <option value="$PROJECT_DIR$/dbsettings.py" />
         <option value="$PROJECT_DIR$/zlogsysd" />
         <option value="$PROJECT_DIR$/dev-test/dbsettings.py" />
-        <option value="$PROJECT_DIR$/dbmodels.py" />
         <option value="$PROJECT_DIR$/utils/HTTPQueryArgs.py" />
         <option value="$PROJECT_DIR$/dev-test/test.py" />
         <option value="$PROJECT_DIR$/views/sidebar.html" />
@@ -152,6 +152,7 @@
         <option value="$PROJECT_DIR$/dev-test/test2.py" />
         <option value="$PROJECT_DIR$/utils/CommonUtils.py" />
         <option value="$PROJECT_DIR$/views/base.html" />
+        <option value="$PROJECT_DIR$/dbmodels.py" />
         <option value="$PROJECT_DIR$/zlogsysd.py" />
       </list>
     </option>
@@ -1188,14 +1189,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dbmodels.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="33" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/CommonFilter.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.5062167">
@@ -1231,10 +1224,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dbmodels.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="53" column="35" selection-start-line="53" selection-start-column="35" selection-end-line="53" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/zlogsysd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6216216">
-          <caret line="242" column="39" selection-start-line="242" selection-start-column="39" selection-end-line="242" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.42905405">
+          <caret line="236" column="40" selection-start-line="236" selection-start-column="40" selection-end-line="236" selection-end-column="40" />
           <folding>
             <element signature="e#24#52#0" expanded="true" />
           </folding>

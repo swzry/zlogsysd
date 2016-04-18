@@ -13,9 +13,9 @@ class BaseModel(Model):
 
 class LogApp(BaseModel):
 	name = CharField(max_length=128,unique=True,index=True)
-	desc = TextField()
-	appkey = CharField(max_length=128)
-	secret = CharField(max_length=128)
+	desc = TextField(null = True)
+	appkey = CharField(max_length=128,null = True,index=True)
+	secret = CharField(max_length=128,null = True)
 
 class LogSrc(BaseModel):
 	name = CharField(max_length=128,index=True)

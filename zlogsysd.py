@@ -234,7 +234,7 @@ class CGI_APP:
 	@CheckLogin
 	def NewApp_backend(self,auth=None):
 		appname = request.forms.get("name")
-		desc = request.forms.get("desc")
+		desc = request.forms.get("desp")
 		if not IDNameCheck(appname):
 			ThrowMsg(auth,"d","应用名称无效（只能包含大小写字母、数字和下划线_）")
 			redirect("/app/new/",code=302)

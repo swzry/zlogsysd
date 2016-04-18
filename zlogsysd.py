@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 from daemonlib import Daemon
-from bottle import Bottle,route,run,get,post,response,HTTPError,static_file,request,error,template,redirect
+from bottle import Bottle,route,run,get,post,response,HTTPError,static_file,request,error,template,redirect,HTTPResponse
 import os,sys,time,traceback,datetime,threading,json,logging,rsa,hmac,hashlib,uuid
 from utils.CommonFilter import CommonFilter
 from utils.HTTPQueryArgs import HTTPQueryArgs
@@ -114,6 +114,8 @@ def CheckLogin(func):
 			try:
 				result = func(*args,**kwargs)
 				return result
+			except HTTPResponse,e:
+				raise e
 			except:
 				SelfFailureLoggerModel.addlog(logging.ERROR,'text/plain',traceback.format_exc())
 				return error(500)

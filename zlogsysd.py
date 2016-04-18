@@ -237,13 +237,13 @@ class CGI_APP:
 		desc = request.forms.get("desp")
 		if not IDNameCheck(appname):
 			ThrowMsg(auth,"d","应用名称无效（只能包含大小写字母、数字和下划线_）")
-			redirect("/app/new/",code=302)
+			return redirect("/app/new/",code=302)
 		co,ic = LogApp.get_or_create(name=appname,defaults={"desc":desc})
 		if ic:
 			ThrowMsg(auth,"s","应用创建成功")
 		else:
 			ThrowMsg(auth,"w","应用名称与现有应用重复，新应用未被创建")
-		redirect("/app/list/",code=302)
+		return redirect("/app/list/",code=302)
 
 	@CheckLogin
 	def SrcList(self,auth=None):

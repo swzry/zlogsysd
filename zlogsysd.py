@@ -177,6 +177,14 @@ class CGI_APP:
 		return template('app.list.html',**kwvars)
 
 	@CheckLogin
+	def NewAppForm(self,auth=None):
+		kwvars = {
+			"PageTitle":"新建应用",
+			"auth":auth,
+		}
+		return template('form.newapp.html',**kwvars)
+
+	@CheckLogin
 	def SrcList(self,auth=None):
 		so = LogSrc.select()
 		fco = CommonFilter(LogSrc,logger=SelfFailureLoggerModel.addlog)

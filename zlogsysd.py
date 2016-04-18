@@ -29,6 +29,7 @@ def RouteTable(app):
 		'/logout/': cgiapp.logout,
 		'/about/': cgiapp.about,
 		'/app/list/':cgiapp.AppList,
+		'/app/new/':cgiapp.NewAppForm,
 		'/src/list/':cgiapp.SrcList,
 		'/log/list/':cgiapp.LogList,
 		'/log/view/<logid>/':cgiapp.LogView,
@@ -37,6 +38,7 @@ def RouteTable(app):
 	}
 	postDict = {
 		'/login/': cgiapp.login_backend,
+		'/app/new/':cgiapp.NewApp_backend,
 	}
 ##=======================================
 	for url in routeDict:

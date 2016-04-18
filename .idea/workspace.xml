@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3618aabe-af20-475b-b62a-19125caa0ef8" name="Default" comment="~&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/CommonUtils.py" afterPath="$PROJECT_DIR$/utils/CommonUtils.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/base.html" afterPath="$PROJECT_DIR$/views/base.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zlogsysd.py" afterPath="$PROJECT_DIR$/zlogsysd.py" />
     </list>
     <ignored path="zlogsysd.iws" />
@@ -35,27 +33,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="zlogsysd.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="zlogsysd.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/zlogsysd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="442" column="23" selection-start-line="442" selection-start-column="23" selection-end-line="442" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.6858108">
+              <caret line="243" column="39" selection-start-line="243" selection-start-column="39" selection-end-line="243" selection-end-column="39" />
               <folding>
                 <element signature="e#24#52#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.42730495">
-              <caret line="52" column="33" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
-              <folding>
-                <marker date="1461014602248" expanded="true" signature="74:79" placeholder="..." />
-                <marker date="1461014602248" expanded="true" signature="149:158" placeholder="..." />
-                <marker date="1461014602248" expanded="true" signature="229:242" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -167,8 +151,8 @@
         <option value="$PROJECT_DIR$/utils/CommonFilter.py" />
         <option value="$PROJECT_DIR$/dev-test/test2.py" />
         <option value="$PROJECT_DIR$/utils/CommonUtils.py" />
-        <option value="$PROJECT_DIR$/zlogsysd.py" />
         <option value="$PROJECT_DIR$/views/base.html" />
+        <option value="$PROJECT_DIR$/zlogsysd.py" />
       </list>
     </option>
   </component>
@@ -1235,16 +1219,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zlogsysd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="442" column="23" selection-start-line="442" selection-start-column="23" selection-end-line="442" selection-end-column="23" />
-          <folding>
-            <element signature="e#24#52#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.42730495">
@@ -1253,6 +1227,16 @@
             <marker date="1461014602248" expanded="true" signature="74:79" placeholder="..." />
             <marker date="1461014602248" expanded="true" signature="149:158" placeholder="..." />
             <marker date="1461014602248" expanded="true" signature="229:242" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zlogsysd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6858108">
+          <caret line="243" column="39" selection-start-line="243" selection-start-column="39" selection-end-line="243" selection-end-column="39" />
+          <folding>
+            <element signature="e#24#52#0" expanded="true" />
           </folding>
         </state>
       </provider>

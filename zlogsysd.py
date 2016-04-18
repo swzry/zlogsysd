@@ -238,7 +238,7 @@ class CGI_APP:
 		if not IDNameCheck(appname):
 			ThrowMsg(auth,"d","应用名称无效（只能包含大小写字母、数字和下划线_）")
 			redirect("/app/new/",code=302)
-		co,ic = LogApp.create_or_get(name=appname,default={"desc":desc})
+		co,ic = LogApp.create_or_get(name=appname,defaults={"desc":desc})
 		if ic:
 			ThrowMsg(auth,"s","应用创建成功")
 		else:

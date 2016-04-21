@@ -260,7 +260,8 @@ class CGI_APP:
 		if ao.name == "zlogsys":
 			ThrowMsg(auth,"d","系统应用'zlogsys'不能删除")
 			return redirect("/app/list/",code=302)
-		if not ao.gethash == vcode:
+		SelfLoggerModel.addlog(logging.DEBUG,"text/plain","HashInfo: queryHash={0},objectHash={1}".format(repr(vcode),repr(ao.gethash())))
+		if not ao.gethash() == vcode:
 			ThrowMsg(auth,"d","安全校验失败，服务器拒绝操作")
 			return redirect("/app/list/",code=302)
 		ao.delete_instance()

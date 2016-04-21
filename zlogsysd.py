@@ -30,6 +30,7 @@ def RouteTable(app):
 		'/about/': cgiapp.about,
 		'/app/list/':cgiapp.AppList,
 		'/app/new/':cgiapp.NewAppForm,
+		'/app/del/':cgiapp.DelApp,
 		'/src/list/':cgiapp.SrcList,
 		'/log/list/':cgiapp.LogList,
 		'/log/view/<logid>/':cgiapp.LogView,
@@ -255,6 +256,9 @@ class CGI_APP:
 			ao = LogApp.get(LogApp.id == appid)
 		except LogApp.DoesNotExist:
 			ThrowMsg(auth,"d","应用不存在")
+			return redirect("/app/list/",code=302)
+		if ao.name == "zlogsys":
+			ThrowMsg(auth,"d","系统应用'zlogsys'不能删除")
 			return redirect("/app/list/",code=302)
 		if not ao.gethash == vcode:
 			ThrowMsg(auth,"d","安全校验失败，服务器拒绝操作")

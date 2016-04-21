@@ -276,7 +276,7 @@ class CGI_APP:
 		so = LogSrc.select()
 		fco = CommonFilter(LogSrc,logger=SelfFailureLoggerModel.addlog)
 		fco.AddFilter("an","app.name","eq",title="应用名")
-		fco.AddFilter("ai","app.id","eq",title="应用ID")
+		fco.AddFilter("ai","app_id","eq",title="应用ID")
 		fco.AddFilter("n","name","eq",title="日志源名")
 		fco.AddFilter("id","id","eq",title="日志源ID")
 		so = fco.Filter(request,so)

@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3618aabe-af20-475b-b62a-19125caa0ef8" name="Default" comment="~&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dbmodels.py" afterPath="$PROJECT_DIR$/dbmodels.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/CommonUtils.py" afterPath="$PROJECT_DIR$/utils/CommonUtils.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zlogsysd.py" afterPath="$PROJECT_DIR$/zlogsysd.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/app.list.html" afterPath="$PROJECT_DIR$/views/app.list.html" />
     </list>
     <ignored path="zlogsysd.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -792,7 +789,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18229716" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />

@@ -24,6 +24,7 @@
 			<th>描述</th>
 			<th>APPKEY</th>
 			<th>SECRET</th>
+			<th>操作</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -34,6 +35,7 @@
 				<td>{{i.desc}}</td>
 				<td>{{i.appkey}}</td>
 				<td><button class="btn btn-xs btn-info" onclick="prompt('{{i.secret}}')">查看</button></td>
+				<td><a role="button" class="btn btn-xs btn-danger" href="/app/del/?aid={{i.id}}&hash={{i.gethash()}}">删除</a></td>
 			</tr>
 		% end
 	</tbody>

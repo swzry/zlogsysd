@@ -1,4 +1,4 @@
-import re
+import re,hashlib
 
 REGX_IDNAME = re.compile("^[0-9a-zA-Z_]+$")
 
@@ -47,3 +47,8 @@ def MakeSummary(text,limit):
 
 def IDNameCheck(text):
 	return bool(REGX_IDNAME.match(text))
+
+def ShortSecureHash(data):
+	ho = hashlib.sha256(data)
+	mo = hashlib.md5(ho.digest().encode("base64").strip())
+	return mo.digest().encode("base64").strip().replace("=","Z").replace("+","R").replace("/","Y")

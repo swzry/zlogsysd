@@ -248,6 +248,23 @@ class CGI_APP:
 		return redirect("/app/list/",code=302)
 
 	@CheckLogin
+	def DelApp(self,auth=None):
+		appid = request.query.get("aid")
+		vcode = request.query.get("hash")
+		try:
+			ao = LogApp.get(LogApp.id == appid)
+		except LogApp.DoesNotExist:
+			ThrowMsg(auth,"d","应用不存在")
+			return redirect("/app/list/",code=302)
+		if not ao.gethash == vcode:
+			ThrowMsg(auth,"d","安全校验失败，服务器拒绝操作")
+			return redirect("/app/list/",code=302)
+		ao.delete_instance()
+		ThrowMsg(auth,"s","删除成功")
+		return redirect("/app/list/",code=302)
+
+
+	@CheckLogin
 	def SrcList(self,auth=None):
 		so = LogSrc.select()
 		fco = CommonFilter(LogSrc,logger=SelfFailureLoggerModel.addlog)
@@ -317,7 +334,11 @@ class CGI_APP:
 
 	@CheckLogin
 	def LogView(self,logid,auth=None):
-		lo = LogItem.get(LogItem.id == str2int(logid))
+		try:
+			lo = LogItem.get(LogItem.id == str2int(logid))
+		except LogItem.DoesNotExist:
+			ThrowMsg(auth,"d","该日志条目不存在！")
+			return redirect("/log/list/",code=302)
 		kwvars = {
 			"PageTitle":"查看日志条目内容",
 			"auth":auth,

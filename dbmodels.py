@@ -3,6 +3,7 @@ from dbsettings import ConfigurePeeWee
 from peewee import Model
 from peewee import CharField, IntegerField, BigIntegerField, TextField, ForeignKeyField, DateTimeField
 from DataConvert import BigIntUniqueID
+from utils.CommonUtils import ShortSecureHash
 import datetime
 
 pwdb = ConfigurePeeWee()
@@ -16,6 +17,10 @@ class LogApp(BaseModel):
 	desc = TextField(null = True)
 	appkey = CharField(max_length=128,null = True,index=True)
 	secret = CharField(max_length=128,null = True)
+
+	def gethash(self):
+		hs = "hash?id={0},appkey={1},secret={2}".format(self.id,self.appkey,self.secret)
+		return ShortSecureHash(hs)
 
 class LogSrc(BaseModel):
 	name = CharField(max_length=128,index=True)

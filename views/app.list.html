@@ -41,6 +41,7 @@
 					% else:
 						<a role="button" class="btn btn-xs btn-danger" href="/app/del/?aid={{i.id}}&hash={{i.gethash()}}">删除</a>
 					% end
+					<button class="btn btn-xs btn-info" onclick="addlogsrc({{i.id}})">新建日志源</button>
 				</td>
 			</tr>
 		% end
@@ -48,4 +49,35 @@
 </table>
 <br />
 % include('Paginator.html',pco=pco,hqo=hqo)
-	
+
+<!-- Modal -->
+<div class="modal fade" id="modalAddLogSrc" tabindex="-1" role="dialog" aria-labelledby="modalAddLogSrcLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<form method="POST" action="/src/new/" onkeydown="if(event.keyCode==13)return false;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="modalAddLogSrcLabel">新建日志源</h4>
+				</div>
+				<div class="modal-body">
+					<input type="hidden" id="src_appid" name="aid" value="">
+					<div class="form-group">
+						<label for="srcname">日志源名称</label>
+						<input type="text" class="form-control" id="srcname" placeholder="日志源名称" name="name">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-primary" type="submit">确定</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	function addlogsrc(appid){
+		$("#src_appid").val(appid);
+		$("#modalAddLogSrc").modal('show');
+	}
+</script>

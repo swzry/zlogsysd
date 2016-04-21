@@ -32,6 +32,7 @@ def RouteTable(app):
 		'/app/new/':cgiapp.NewAppForm,
 		'/app/del/':cgiapp.DelApp,
 		'/src/list/':cgiapp.SrcList,
+		'/src/del/':cgiapp.DelSrc,
 		'/log/list/':cgiapp.LogList,
 		'/log/view/<logid>/':cgiapp.LogView,
 	}
@@ -40,6 +41,7 @@ def RouteTable(app):
 	postDict = {
 		'/login/': cgiapp.login_backend,
 		'/app/new/':cgiapp.NewApp_backend,
+		'/src/new/':cgiapp.NewSrc_backend,
 	}
 ##=======================================
 	for url in routeDict:
@@ -260,7 +262,7 @@ class CGI_APP:
 		if ao.name == "zlogsys":
 			ThrowMsg(auth,"d","系统应用'zlogsys'不能删除")
 			return redirect("/app/list/",code=302)
-		SelfLoggerModel.addlog(logging.DEBUG,"text/plain","HashInfo: queryHash={0},objectHash={1}".format(repr(vcode),repr(ao.gethash())))
+		#SelfLoggerModel.addlog(logging.DEBUG,"text/plain","HashInfo: queryHash={0},objectHash={1}".format(repr(vcode),repr(ao.gethash())))
 		if not ao.gethash() == vcode:
 			ThrowMsg(auth,"d","安全校验失败，服务器拒绝操作")
 			return redirect("/app/list/",code=302)
@@ -274,7 +276,9 @@ class CGI_APP:
 		so = LogSrc.select()
 		fco = CommonFilter(LogSrc,logger=SelfFailureLoggerModel.addlog)
 		fco.AddFilter("an","app.name","eq",title="应用名")
-		fco.AddFilter("n","name","eq",title="来源名")
+		fco.AddFilter("ai","app.id","eq",title="应用ID")
+		fco.AddFilter("n","name","eq",title="日志源名")
+		fco.AddFilter("id","id","eq",title="日志源ID")
 		so = fco.Filter(request,so)
 		try:
 			pgid = int(request.query.get('page','1'))
@@ -295,6 +299,58 @@ class CGI_APP:
 			"auth":auth,
 		}
 		return template('src.list.html',**kwvars)
+
+	# @CheckLogin
+	# def NewSrcForm(self,auth=None):
+	# 	kwvars = {
+	# 		"PageTitle":"新建日志源",
+	# 		"auth":auth,
+	# 	}
+	# 	return template('form.newsrc.html',**kwvars)
+
+	@CheckLogin
+	def NewSrc_backend(self,auth=None):
+		srcname = request.forms.get("name")
+		appid = request.forms.get("aid")
+		try:
+			appobj = LogApp.get(LogApp.id == appid)
+		except LogApp.DoesNotExist:
+			ThrowMsg(auth,"d","应用不存在")
+			return redirect("/app/list/",code=302)
+		if appobj.name == "zlogsys":
+			ThrowMsg(auth,"d","不能在系统应用'zlogsys'下创建新日志源")
+			return redirect("/app/list/",code=302)
+		if not IDNameCheck(srcname):
+			ThrowMsg(auth,"d","日志源名称无效（只能包含大小写字母、数字和下划线_）")
+			return redirect("/app/list/",code=302)
+		co,ic = LogSrc.get_or_create(name=srcname,app=appobj)
+		if ic:
+			ThrowMsg(auth,"s","日志源创建成功")
+			return redirect("/src/list/?ai="+appid,code=302)
+		else:
+			ThrowMsg(auth,"w","日志源名称与在同一个应用下的现有日志源重复，新日志源未被创建")
+			return redirect("/app/list/",code=302)
+
+
+	@CheckLogin
+	def DelSrc(self,auth=None):
+		srcid = request.query.get("sid")
+		vcode = request.query.get("hash")
+		try:
+			so = LogSrc.get(LogSrc.id == srcid)
+		except LogSrc.DoesNotExist:
+			ThrowMsg(auth,"d","日志源不存在")
+			return redirect("/src/list/",code=302)
+		if so.app.name == "zlogsys":
+			ThrowMsg(auth,"d","系统应用'zlogsys'下的日志源不能删除")
+			return redirect("/src/list/",code=302)
+		#SelfLoggerModel.addlog(logging.DEBUG,"text/plain","HashInfo: queryHash={0},objectHash={1}".format(repr(vcode),repr(ao.gethash())))
+		if not so.gethash() == vcode:
+			ThrowMsg(auth,"d","安全校验失败，服务器拒绝操作")
+			return redirect("/src/list/",code=302)
+		so.delete_instance()
+		ThrowMsg(auth,"s","删除成功")
+		return redirect("/src/list/",code=302)
 
 	@CheckLogin
 	def LogList(self,auth=None):
